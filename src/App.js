@@ -1,24 +1,37 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
+import About from './components/About';
+import texts from './texts';
+
 import './App.css';
 
 function App() {
+  const [darkMode, setDarkMode] = useState(true);
+  const [language, setLanguage] = useState('pl');
+
+  useEffect(() => {
+    document.body.className = darkMode ? 'dark-mode' : 'light-mode';
+  }, [darkMode]);
+
+  const t = texts[language];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header
+        t={t}
+        language={language}
+        setLanguage={setLanguage}
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
+      />
+      <About t={t} 
+        darkMode={darkMode} 
+        language={language}/>
+      <Projects t={t} />
+      <Contact t={t} darkMode={darkMode} />
+    </>
   );
 }
 
