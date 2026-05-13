@@ -1037,10 +1037,10 @@ section { position: relative; padding: clamp(80px, 12vw, 140px) clamp(20px, 4vw,
    ============================================================ */
 .testi-scene {
   perspective: 1400px;
-  perspective-origin: 50% 40%;
-  height: 360px;
+  perspective-origin: 50% 50%;
+  height: 420px;
   position: relative;
-  margin: 40px 0 20px;
+  margin: 60px 0 20px;
   overflow: visible;
 }
 .testi-stage {
@@ -1052,7 +1052,9 @@ section { position: relative; padding: clamp(80px, 12vw, 140px) clamp(20px, 4vw,
   position: absolute;
   width: 270px;
   left: calc(50% - 135px);
-  top: 0;
+  top: 50%;
+  transform-origin: center center;
+  margin-top: -130px;
   padding: 22px 22px 20px;
   border-radius: var(--radius-lg);
   background: linear-gradient(180deg, rgba(28, 46, 70, 0.72), rgba(14, 24, 38, 0.6));
