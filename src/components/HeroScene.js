@@ -18,7 +18,7 @@ export default function HeroScene({ containerRef, enabled = true }) {
     scene.fog = new THREE.FogExp2(0x050a12, 0.05);
 
     const camera = new THREE.PerspectiveCamera(50, w() / h(), 0.1, 100);
-    camera.position.set(0, 0, 9);
+    camera.position.set(0, 0, 6.5);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -28,6 +28,7 @@ export default function HeroScene({ containerRef, enabled = true }) {
     mount.appendChild(renderer.domElement);
 
     const group = new THREE.Group();
+    group.scale.set(1.35, 1.35, 1.35);
     scene.add(group);
 
     /* Main wire sphere */
