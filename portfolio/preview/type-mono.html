@@ -1,0 +1,17 @@
+<!doctype html><html data-theme="dark"><head>
+<meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:var(--bg-canvas);color:var(--fg-primary);height:100%;}
+  .stage{padding:22px 28px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box;}
+  pre{margin:0;padding:14px 16px;background:var(--bg-sunken);border:1px solid var(--border-subtle);border-radius:var(--radius-md);font-family:var(--font-mono);font-size:13px;line-height:1.55;color:var(--fg-primary);white-space:pre;overflow:auto;}
+  .k{color:#A78BFA;} .s{color:#86EFAC;} .c{color:var(--fg-tertiary);} .f{color:#60A5FA;}
+  .row{display:flex;gap:10px;align-items:center;}
+  code{font-family:var(--font-mono);font-size:13px;background:var(--bg-sunken);border:1px solid var(--border-subtle);padding:2px 6px;border-radius:4px;}
+</style></head>
+<body><div class="stage">
+<pre><span class="k">const</span> deploy = <span class="k">async</span> () =&gt; {
+  <span class="k">await</span> <span class="f">build</span>(<span class="s">'production'</span>); <span class="c">// → ./dist</span>
+  <span class="k">return</span> <span class="f">push</span>({ region: <span class="s">'eu-central-1'</span> });
+};</pre>
+<div class="row"><code>npm run deploy</code><code>POST /api/v2/projects</code><code>1,234,567</code></div>
+</div></body></html>

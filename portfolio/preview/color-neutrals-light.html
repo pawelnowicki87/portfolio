@@ -1,0 +1,23 @@
+<!doctype html><html data-theme="light"><head>
+<meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:var(--bg-canvas);color:var(--fg-primary);height:100%;}
+  .stage{padding:20px 24px;display:flex;flex-direction:column;gap:14px;}
+  .row{display:flex;gap:10px;font-family:var(--font-mono);font-size:11px;color:var(--fg-tertiary);}
+  .tile{flex:1;padding:14px;border-radius:var(--radius-md);border:1px solid var(--border-default);}
+  .canvas{background:var(--bg-canvas);}
+  .surface{background:var(--bg-surface);}
+  .elev{background:var(--bg-elevated);box-shadow:var(--shadow-sm);}
+  .sunken{background:var(--bg-sunken);}
+  .name{font-weight:600;color:var(--fg-primary);margin-bottom:4px;font-family:var(--font-sans);font-size:13px;}
+  .demo{color:var(--fg-secondary);font-size:12px;font-family:var(--font-sans);}
+</style></head>
+<body><div class="stage">
+  <div class="row" style="height:110px;">
+    <div class="tile canvas"><div class="name">Canvas</div><div class="demo">App background</div></div>
+    <div class="tile surface"><div class="name">Surface</div><div class="demo">Cards · panels</div></div>
+    <div class="tile elev"><div class="name">Elevated</div><div class="demo">Popovers · menus</div></div>
+    <div class="tile sunken"><div class="name">Sunken</div><div class="demo">Code · inputs</div></div>
+  </div>
+  <div style="font-family:var(--font-mono);font-size:11px;color:var(--fg-tertiary);">light theme surfaces — same tokens, inverted lift</div>
+</div></body></html>

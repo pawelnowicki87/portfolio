@@ -1,0 +1,21 @@
+<!doctype html><html data-theme="dark"><head>
+<meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:var(--bg-canvas);color:var(--fg-primary);height:100%;}
+  .stage{padding:24px 28px;display:flex;flex-direction:column;gap:14px;}
+  .pair{display:flex;gap:24px;align-items:flex-start;}
+  .col{flex:1;}
+  .lbl{font-size:11px;color:var(--fg-tertiary);font-family:var(--font-mono);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;}
+  .demo{font-size:24px;font-weight:600;letter-spacing:-0.02em;}
+  .off{font-feature-settings:normal;}
+  .on{font-feature-settings:'cv11','ss01','ss03';}
+  .nums{font-variant-numeric:tabular-nums;font-size:18px;color:var(--fg-secondary);}
+</style></head>
+<body><div class="stage">
+  <div class="pair">
+    <div class="col"><div class="lbl">Default</div><div class="demo off">aagil 1234</div></div>
+    <div class="col"><div class="lbl">cv11 · ss01 · ss03</div><div class="demo on">aagil 1234</div></div>
+    <div class="col"><div class="lbl">Tabular nums</div><div class="nums">$24,512.00<br>$ 2,118.10</div></div>
+  </div>
+  <div style="font-size:12px;color:var(--fg-tertiary);font-family:var(--font-mono);">single-storey g · alt a · straight l · disambiguated numerals</div>
+</div></body></html>

@@ -1,0 +1,28 @@
+<!doctype html><html data-theme="dark"><head>
+<meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:var(--bg-canvas);color:var(--fg-primary);height:100%;}
+  .stage{padding:18px 24px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  thead{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg-tertiary);}
+  th{text-align:left;padding:8px 12px;border-bottom:1px solid var(--border-default);font-weight:500;}
+  td{padding:11px 12px;border-bottom:1px solid var(--border-subtle);color:var(--fg-primary);}
+  tbody tr:hover{background:var(--action-ghost-bg-hover);}
+  .num{font-variant-numeric:tabular-nums;text-align:right;color:var(--fg-secondary);}
+  .b{display:inline-flex;align-items:center;gap:5px;padding:1px 8px;border-radius:9999px;font-size:11px;font-weight:500;}
+  .ok{background:var(--status-success-bg);color:var(--status-success-fg);}
+  .warn{background:var(--status-warning-bg);color:var(--status-warning-fg);}
+  .info{background:var(--status-info-bg);color:var(--status-info-fg);}
+  .dot{width:5px;height:5px;border-radius:50%;background:currentColor;}
+</style></head>
+<body><div class="stage">
+<table>
+<thead><tr><th>Project</th><th>Owner</th><th>Status</th><th class="num">PRs</th><th class="num">Updated</th></tr></thead>
+<tbody>
+  <tr><td>Hematobieg</td><td>Paweł N.</td><td><span class="b ok"><span class="dot"></span>Deployed</span></td><td class="num">3</td><td class="num">2m ago</td></tr>
+  <tr><td>Phone Catalog</td><td>Paweł N.</td><td><span class="b info"><span class="dot"></span>In progress</span></td><td class="num">8</td><td class="num">1h ago</td></tr>
+  <tr><td>Welcome to the MET</td><td>Paweł N.</td><td><span class="b ok"><span class="dot"></span>Deployed</span></td><td class="num">0</td><td class="num">3d ago</td></tr>
+  <tr><td>Todo app</td><td>Paweł N.</td><td><span class="b warn"><span class="dot"></span>Review</span></td><td class="num">2</td><td class="num">1d ago</td></tr>
+</tbody>
+</table>
+</div></body></html>

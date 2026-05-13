@@ -1,0 +1,49 @@
+<!doctype html><html data-theme="dark"><head>
+<meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:var(--bg-canvas);color:var(--fg-primary);height:100%;}
+  .stage{padding:20px 24px;display:flex;flex-direction:column;gap:14px;}
+  .row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .ico{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border-default);border-radius:var(--radius-md);color:var(--fg-primary);background:var(--bg-surface);}
+  .ico svg{width:18px;height:18px;stroke-width:1.5;}
+  .meta{font-family:var(--font-mono);font-size:11px;color:var(--fg-tertiary);margin-left:auto;}
+  .sizes{display:flex;align-items:center;gap:10px;color:var(--fg-secondary);}
+  .sizes svg{width:auto;height:auto;stroke-width:1.5;}
+  .lbl{font-family:var(--font-mono);font-size:11px;color:var(--fg-tertiary);min-width:64px;}
+</style></head>
+<body><div class="stage">
+  <div class="row">
+    <span class="lbl">set</span>
+    <span class="ico" data-i="github"></span>
+    <span class="ico" data-i="linkedin"></span>
+    <span class="ico" data-i="mail"></span>
+    <span class="ico" data-i="phone"></span>
+    <span class="ico" data-i="download"></span>
+    <span class="ico" data-i="search"></span>
+    <span class="ico" data-i="bell"></span>
+    <span class="ico" data-i="settings"></span>
+    <span class="ico" data-i="plus"></span>
+    <span class="meta">Lucide · 1.5px · 24×24</span>
+  </div>
+  <div class="row sizes">
+    <span class="lbl">sizes</span>
+    <span data-i="layers" data-sz="12"></span>
+    <span data-i="layers" data-sz="14"></span>
+    <span data-i="layers" data-sz="16"></span>
+    <span data-i="layers" data-sz="20"></span>
+    <span data-i="layers" data-sz="24"></span>
+    <span data-i="layers" data-sz="32"></span>
+    <span class="meta">currentColor · no fill</span>
+  </div>
+</div>
+<script>
+  document.querySelectorAll('[data-i]').forEach(el => {
+    const name = el.dataset.i;
+    const sz = el.dataset.sz;
+    const ico = lucide.icons[name.replace(/(^|-)(\w)/g, (_,a,b)=>b.toUpperCase())];
+    if (!ico) return;
+    el.innerHTML = ico.toSvg({ 'stroke-width': 1.5, width: sz || 18, height: sz || 18 });
+  });
+</script>
+</body></html>

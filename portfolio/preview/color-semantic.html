@@ -1,0 +1,24 @@
+<!doctype html><html data-theme="dark"><head>
+<meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:var(--bg-canvas);color:var(--fg-primary);height:100%;}
+  .stage{padding:22px 24px;display:flex;flex-direction:column;gap:14px;}
+  .row{display:flex;gap:10px;}
+  .pill{flex:1;padding:14px 16px;border-radius:var(--radius-md);font-family:var(--font-sans);font-size:13px;font-weight:500;display:flex;align-items:center;justify-content:space-between;border:1px solid transparent;}
+  .pill .dot{width:8px;height:8px;border-radius:50%;}
+  .pill .hex{font-family:var(--font-mono);font-size:10.5px;opacity:.7;}
+  .s{background:var(--status-success-bg);color:var(--status-success-fg);border-color:rgba(16,185,129,.18);}
+  .w{background:var(--status-warning-bg);color:var(--status-warning-fg);border-color:rgba(245,158,11,.18);}
+  .d{background:var(--status-danger-bg);color:var(--status-danger-fg);border-color:rgba(239,68,68,.18);}
+  .i{background:var(--status-info-bg);color:var(--status-info-fg);border-color:rgba(59,130,246,.18);}
+  .lab{display:flex;align-items:center;gap:8px;}
+</style></head>
+<body><div class="stage">
+  <div class="row">
+    <div class="pill s"><span class="lab"><span class="dot" style="background:#10B981;"></span>Success</span><span class="hex">#10B981</span></div>
+    <div class="pill w"><span class="lab"><span class="dot" style="background:#F59E0B;"></span>Warning</span><span class="hex">#F59E0B</span></div>
+    <div class="pill d"><span class="lab"><span class="dot" style="background:#EF4444;"></span>Danger</span><span class="hex">#EF4444</span></div>
+    <div class="pill i"><span class="lab"><span class="dot" style="background:#3B82F6;"></span>Info</span><span class="hex">#3B82F6</span></div>
+  </div>
+  <div style="font-family:var(--font-mono);font-size:11px;color:var(--fg-tertiary);">paired bg / fg tokens — toasts · badges · validation</div>
+</div></body></html>

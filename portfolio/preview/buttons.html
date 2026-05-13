@@ -1,0 +1,39 @@
+<!doctype html><html data-theme="dark"><head>
+<meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:var(--bg-canvas);color:var(--fg-primary);height:100%;}
+  .stage{padding:22px 24px;display:flex;flex-direction:column;gap:14px;}
+  .row{display:flex;align-items:center;gap:10px;}
+  .btn{font-family:var(--font-sans);font-size:13px;font-weight:500;padding:0 14px;height:34px;border-radius:var(--radius-md);border:1px solid transparent;cursor:pointer;display:inline-flex;align-items:center;gap:6px;line-height:1;}
+  .primary{background:var(--action-primary-bg);color:#fff;}
+  .primary:hover{background:var(--action-primary-bg-hover);}
+  .secondary{background:var(--action-secondary-bg);color:var(--action-secondary-fg);border-color:var(--border-default);}
+  .secondary:hover{background:var(--action-secondary-bg-hover);}
+  .ghost{background:transparent;color:var(--fg-primary);}
+  .ghost:hover{background:var(--action-ghost-bg-hover);}
+  .danger{background:var(--red-500);color:#fff;}
+  .disabled{opacity:.5;cursor:not-allowed;}
+  .sm{height:28px;font-size:12px;padding:0 10px;border-radius:var(--radius-sm);}
+  .lg{height:42px;font-size:14px;padding:0 18px;}
+  .icon{width:34px;justify-content:center;padding:0;}
+  .focus{box-shadow:var(--ring-focus);}
+  .lbl{font-family:var(--font-mono);font-size:10.5px;color:var(--fg-tertiary);min-width:80px;}
+  svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
+</style></head>
+<body><div class="stage">
+  <div class="row">
+    <span class="lbl">primary</span>
+    <button class="btn primary"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>New project</button>
+    <button class="btn primary focus">Focused</button>
+    <button class="btn primary disabled">Disabled</button>
+    <button class="btn primary sm">Small</button>
+    <button class="btn primary lg">Large</button>
+  </div>
+  <div class="row">
+    <span class="lbl">secondary</span>
+    <button class="btn secondary">Cancel</button>
+    <button class="btn ghost">Ghost</button>
+    <button class="btn danger">Delete</button>
+    <button class="btn secondary icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg></button>
+  </div>
+</div></body></html>
