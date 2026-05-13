@@ -49,7 +49,7 @@ const pl = {
     downloadCv: 'Pobierz CV',
     stats: [
       { num: 6,   unit: '+', label: 'Wdrożonych projektów' },
-      { num: 5,   unit: 'y', label: 'W świecie kodu' },
+      { num: 4,   unit: 'y', label: 'W świecie kodu' },
       { num: 100, unit: '%', label: 'Responsywność · dostępność' },
       { num: 1,   unit: '★', label: 'Charytatywny launch — hematobieg.org' },
     ],
@@ -87,7 +87,9 @@ const pl = {
       { label: 'Języki',      val: 'PL · EN', icon: 'sparkles' },
     ],
     timeline: [
-      { year: '2021 · Teraz', title: 'Fullstack Developer · Freelance', desc: 'Praca z założycielami i zespołami produktowymi nad aplikacjami React/Node. Wdrożone projekty komercyjne i side-projekty w React, TypeScript i Node.' },
+      { year: '2025 · Teraz',  title: 'Fullstack Developer · Freelance', desc: 'Praca z założycielami i zespołami produktowymi nad aplikacjami React/Node. Ostatni launch: hematobieg.org — ogólnopolska platforma charytatywna.' },
+      { year: '2023 — 2024',   title: 'Absolwent Fullstack Bootcamp',   desc: 'Intensywny program React / TypeScript / Node. Zrealizowane sześć produkcyjnych projektów obejmujących zarządzanie stanem, REST API, design systems i animacje.' },
+      { year: '2022',          title: 'Pierwsze linie JavaScript',       desc: 'Decyzja o zmianie ścieżki zawodowej. Małe narzędzia, dużo zepsutego kodu, wielka miłość do rzemiosła.' },
     ],
   },
 
@@ -104,8 +106,9 @@ const pl = {
     eyebrow: '03 · Projekty',
     title: 'Wybrane ',
     titleAccent: 'realizacje.',
-    sub: 'Od platformy charytatywnej po e-commerce i marketing site — przekrój tego, co wdrożyłem.',
+    sub: 'Od ogólnopolskiej platformy charytatywnej po e-commerce, produktywność i side-projects w czystym rzemiośle — przekrój tego, co wdrożyłem.',
     demo: 'Live demo',
+    source: 'Kod',
     items: [
       {
         title: 'Hematobieg',
@@ -128,6 +131,27 @@ const pl = {
         chips: ['HTML', 'Sass', 'BEM'],
         layout: 'half',
       },
+      {
+        title: 'Todo App',
+        tag: 'Produktywność',
+        desc: 'Menedżer zadań z filtrowaniem, edycją inline i optymistycznymi update’ami pod prawdziwym REST API.',
+        chips: ['React', 'REST API', 'Hooks'],
+        layout: 'third',
+      },
+      {
+        title: 'Lista postów',
+        tag: 'Redux',
+        desc: 'Zarządzanie postami i komentarzami oparte o Redux store — slices, async thunks, czysta modułowa struktura feature folders.',
+        chips: ['React', 'Redux Toolkit'],
+        layout: 'third',
+      },
+      {
+        title: '2048',
+        tag: 'Gra',
+        desc: 'Klasyczne 2048 od podstaw — obsługa klawiatury, logika łączenia kafelków, płynne animacje siatki.',
+        chips: ['Vanilla JS', 'Logika', 'Animacja'],
+        layout: 'third',
+      },
     ],
   },
 
@@ -138,14 +162,9 @@ const pl = {
     titleAccent: 'klienci.',
     sub: 'Kilka słów od osób, z którymi ostatnio coś budowałem.',
     items: [
-      { text: 'Paweł dostarczył całą platformę w napiętym terminie i nadał jej dopracowany, godny zaufania wygląd. Zauważyli to zarówno sponsorzy, jak i biegacze.', name: 'Marek Kowalski',   role: 'Lead wydarzeń charytatywnych',       initials: 'MK' },
-      { text: 'Obsesyjnie skupiony na detalach w najlepszy możliwy sposób. Animacje, mikrointerakcje, dostępność — Paweł dba o rzeczy, które większość developerów ignoruje.',           name: 'Anna Wiśniewska', role: 'Product designer · Warszawa',        initials: 'AW' },
-      { text: 'Potrzebowaliśmy inżyniera React, który sam poprowadzi feature od początku do końca. Paweł w tydzień ogarnął nasz stack, kolejny zaczął shipować produkcyjne PR-y.',       name: 'Tomáš Horák',    role: 'Engineering manager · Praga',        initials: 'TH' },
-      { text: 'Zatrudniłam Pawła do przeprojektowania frontu naszej aplikacji. Komunikacja bez przeciągania, deadline dotrzymany, efekt przeszedł moje oczekiwania.',                    name: 'Karolina Dąbrowska', role: 'Założycielka startupu · Kraków',   initials: 'KD' },
-      { text: 'Pracowałem z wieloma React developerami — Paweł jest w tej czołówce. Czysty kod, solidna architektura, nie trzeba mu tłumaczyć dwa razy.',                               name: 'Michał Zając',   role: 'Frontend Tech Lead · Gdańsk',        initials: 'MZ' },
-      { text: 'Paweł zadbał o dostępność i UX w każdym detalu. Rzadko spotykam developera, który rozumie design tak jak on.',                                                           name: 'Sara Lindqvist', role: 'UX researcher · Sztokholm',          initials: 'SL' },
-      { text: 'Szukałem kogoś, kto ogarnie cały feature bez nadzoru. Paweł dostarczył działający produkt szybciej niż zakładał plan.',                                                  name: 'Piotr Wróbel',   role: 'CTO · Wrocław',                      initials: 'PW' },
-      { text: 'Reaguje błyskawicznie, pyta o cel przed implementacją i dostarcza rzeczy, które po prostu działają. Idealny partner do budowania produktu.',                             name: 'Julia Kowalczyk', role: 'Product manager · Warszawa',         initials: 'JK' },
+      { text: 'Paweł dostarczył całą platformę Hematobieg w napiętym terminie i nadał jej dopracowany, godny zaufania wygląd. Zauważyli to zarówno sponsorzy, jak i biegacze.', name: 'Marek Kowalski', role: 'Lead wydarzeń charytatywnych · Hematobieg', initials: 'MK' },
+      { text: 'Obsesyjnie skupiony na detalach w najlepszy możliwy sposób. Animacje, mikrointerakcje, dostępność — Paweł dba o rzeczy, które większość developerów ignoruje.',  name: 'Anna Wiśniewska',  role: 'Product designer · Warszawa',           initials: 'AW' },
+      { text: 'Potrzebowaliśmy inżyniera React, który sam poprowadzi feature od początku do końca. Paweł w tydzień ogarnął nasz stack, kolejny zaczął shipować produkcyjne PR-y.', name: 'Tomáš Horák',     role: 'Engineering manager · Praga',           initials: 'TH' },
     ],
   },
 
@@ -215,7 +234,7 @@ const en = {
     downloadCv: 'Download CV',
     stats: [
       { num: 6,   unit: '+', label: 'Shipped projects' },
-      { num: 5,   unit: 'y', label: 'Building for the web' },
+      { num: 4,   unit: 'y', label: 'Building for the web' },
       { num: 100, unit: '%', label: 'Responsive · accessible' },
       { num: 1,   unit: '★', label: 'Charity launch — hematobieg.org' },
     ],
@@ -252,7 +271,9 @@ const en = {
       { label: 'Languages',    val: 'PL · EN',                 icon: 'sparkles' },
     ],
     timeline: [
-      { year: '2021 · Now', title: 'Fullstack Developer · Freelance', desc: 'Working with founders & product teams to ship React/Node web apps. Commercial projects and side projects in React, TypeScript and Node.' },
+      { year: '2025 · Now',  title: 'Fullstack Developer · Freelance', desc: 'Working with founders & product teams to ship React/Node web apps. Recent launch: hematobieg.org — a national charity-run platform.' },
+      { year: '2023 — 2024', title: 'Fullstack Bootcamp Graduate',     desc: 'Intensive React / TypeScript / Node curriculum. Shipped six production-style projects covering state management, REST APIs, design systems and animation.' },
+      { year: '2022',        title: 'First lines of JavaScript',       desc: 'Made the jump from a different career into software. Built tiny tools, broke a lot of things, fell in love with the craft.' },
     ],
   },
 
@@ -267,12 +288,16 @@ const en = {
     eyebrow: '03 · Work',
     title: 'Selected ',
     titleAccent: 'projects.',
-    sub: "From a charity platform to e-commerce and a marketing site — a snapshot of what I've shipped.",
+    sub: "From a national charity platform to commerce, productivity and pure-craft side projects — a snapshot of what I've shipped.",
     demo: 'Live demo',
+    source: 'Source',
     items: [
       { title: 'Hematobieg',         tag: 'Commercial · Live', desc: 'A national charity-run platform supporting Polish leukemia patients. Built end-to-end: marketing site, registration flow, sponsor showcase, content pages.', chips: ['React', 'Bootstrap', 'Responsive', 'CMS'], layout: 'feature' },
-      { title: 'Phone Catalog',      tag: 'eCommerce',         desc: 'A complete online store for phones and mobile accessories: catalog browsing, cart, favorites, product detail with image carousel and variant picker.',      chips: ['React', 'TypeScript', 'Sass'],             layout: 'half' },
-      { title: 'Welcome to the MET', tag: 'Marketing site',    desc: 'A fully responsive museum experience with hero galleries, exhibition pages and a contact form. Pixel-tight, mobile-first.',                                chips: ['HTML', 'Sass', 'BEM'],                    layout: 'half' },
+      { title: 'Phone Catalog',      tag: 'eCommerce',         desc: 'A complete online store for phones and mobile accessories: catalog browsing, cart, favorites, product detail with image carousel and variant picker.', chips: ['React', 'TypeScript', 'Sass'], layout: 'half' },
+      { title: 'Welcome to the MET', tag: 'Marketing site',    desc: 'A fully responsive museum experience with hero galleries, exhibition pages and a contact form. Pixel-tight, mobile-first.',                                chips: ['HTML', 'Sass', 'BEM'],         layout: 'half' },
+      { title: 'Todo App',           tag: 'Productivity',      desc: 'A task manager with filtering, inline editing and optimistic updates against a live REST API.',                                                            chips: ['React', 'REST API', 'Hooks'],  layout: 'third' },
+      { title: 'List of Posts',      tag: 'Redux',             desc: 'Posts & comments management built on a Redux store — slice patterns, async thunks and a clean modular feature folder structure.',                          chips: ['React', 'Redux Toolkit'],      layout: 'third' },
+      { title: '2048',               tag: 'Game',              desc: 'The classic 2048 puzzle. Built from scratch — keyboard input, tile merging logic, smooth grid animations.',                                                 chips: ['Vanilla JS', 'Logic', 'Animation'], layout: 'third' },
     ],
   },
 
@@ -282,14 +307,9 @@ const en = {
     titleAccent: 'say.',
     sub: "A few words from people I've recently built things with.",
     items: [
-      { text: 'Paweł delivered the entire platform on a tight deadline and made the whole experience feel polished and trustworthy. Sponsors and runners both noticed.',                         name: 'Marek Kowalski',    role: 'Charity event lead',                  initials: 'MK' },
-      { text: 'Detail-obsessed in the best way. Animations, micro-interactions, accessibility — Paweł cares about the things most engineers ignore. Easy to work with, fast to ship.',         name: 'Anna Wiśniewska',   role: 'Product designer · Warsaw',           initials: 'AW' },
-      { text: 'We needed a React engineer who could own a feature end-to-end without hand-holding. Paweł picked up our stack in a week and started shipping production PRs the next.',         name: 'Tomáš Horák',       role: 'Engineering manager · Prague',        initials: 'TH' },
-      { text: 'I hired Paweł to redesign our entire app front-end. Zero back-and-forth, deadline hit, and the end result exceeded my expectations.',                                           name: 'Karolina Dąbrowska', role: 'Startup founder · Kraków',            initials: 'KD' },
-      { text: "I've worked with many React developers — Paweł is in the top tier. Clean code, solid architecture, never needs telling twice.",                                                 name: 'Michał Zając',      role: 'Frontend Tech Lead · Gdańsk',         initials: 'MZ' },
-      { text: 'Paweł covered accessibility and UX in every detail. Rarely do I meet a developer who understands design the way he does.',                                                     name: 'Sara Lindqvist',    role: 'UX researcher · Stockholm',           initials: 'SL' },
-      { text: 'I needed someone who could own a whole feature without supervision. Paweł delivered a working product faster than the plan assumed.',                                           name: 'Piotr Wróbel',      role: 'CTO · Wrocław',                       initials: 'PW' },
-      { text: 'Responds fast, asks about the goal before implementing, and ships things that just work. A perfect partner when building a product.',                                           name: 'Julia Kowalczyk',   role: 'Product manager · Warsaw',            initials: 'JK' },
+      { text: 'Paweł delivered the entire Hematobieg platform on a tight deadline and made the whole experience feel polished and trustworthy. Sponsors and runners both noticed.', name: 'Marek Kowalski',  role: 'Charity event lead · Hematobieg', initials: 'MK' },
+      { text: 'Detail-obsessed in the best way. Animations, micro-interactions, accessibility — Paweł cares about the things most engineers ignore. Easy to work with, fast to ship.', name: 'Anna Wiśniewska', role: 'Product designer · Warsaw',       initials: 'AW' },
+      { text: 'We needed a React engineer who could own a feature end-to-end without hand-holding. Paweł picked up our stack in a week and started shipping production PRs the next.', name: 'Tomáš Horák',     role: 'Engineering manager · Prague',    initials: 'TH' },
     ],
   },
 

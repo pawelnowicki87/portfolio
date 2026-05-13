@@ -5,13 +5,19 @@ import { useInView, useMouseTrack } from '../hooks';
 import hematobieg    from '../image/Hematobieg.png';
 import phonecatalog  from '../image/phonecatalog.png';
 import welcome       from '../image/welcometothemet.png';
+import todo          from '../image/todo.png';
+import listofposts   from '../image/listofposts.jpg';
+import game          from '../image/game.png';
 
-const IMAGES = [hematobieg, phonecatalog, welcome];
+const IMAGES = [hematobieg, phonecatalog, welcome, todo, listofposts, game];
 
 const LINKS = [
-  { demo: 'https://hematobieg.org/' },
-  { demo: 'https://pawelnowicki87.github.io/react_phone-catalog/' },
-  { demo: 'https://pawelnowicki87.github.io/welcome_to_the_met/' },
+  { demo: 'https://hematobieg.org/',                                          github: 'https://github.com/pawelnowicki87/hematobieg' },
+  { demo: 'https://pawelnowicki87.github.io/react_phone-catalog/',            github: 'https://github.com/pawelnowicki87/phone_catalog_react' },
+  { demo: 'https://pawelnowicki87.github.io/welcome_to_the_met/',             github: 'https://github.com/pawelnowicki87/welcome_to_the_met' },
+  { demo: 'https://pawelnowicki87.github.io/todo_app_with_api_react/',        github: 'https://github.com/pawelnowicki87/todo_app_with_api_react' },
+  { demo: 'https://pawelnowicki87.github.io/list_of_posts_react_redux/',      github: 'https://github.com/pawelnowicki87/list_of_posts_react_redux' },
+  { demo: 'https://pawelnowicki87.github.io/2048_game/',                      github: 'https://github.com/pawelnowicki87/2048_game' },
 ];
 
 function ProjectCard({ p, i, inView, t }) {
@@ -39,6 +45,9 @@ function ProjectCard({ p, i, inView, t }) {
         <div className="project-actions">
           <a className="btn btn-primary" href={LINKS[i].demo} target="_blank" rel="noreferrer">
             {t.projectsSec.demo} <Icon name="arrow-up-right" size={14} />
+          </a>
+          <a className="btn btn-ghost" href={LINKS[i].github} target="_blank" rel="noreferrer">
+            <Icon name="github" size={14} /> {t.projectsSec.source}
           </a>
         </div>
       </div>
