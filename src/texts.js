@@ -49,7 +49,7 @@ const pl = {
     downloadCv: 'Pobierz CV',
     stats: [
       { num: 6,   unit: '+', label: 'Wdrożonych projektów' },
-      { num: 5,   unit: 'y', label: 'W świecie kodu' },
+      { num: 3,   unit: '+', label: 'Lata doświadczenia' },
       { num: 100, unit: '%', label: 'Responsywność · dostępność' },
       { num: 1,   unit: '★', label: 'Charytatywny launch — hematobieg.org' },
     ],
@@ -87,7 +87,7 @@ const pl = {
       { label: 'Języki',      val: 'PL · EN', icon: 'sparkles' },
     ],
     timeline: [
-      { year: '2021 · Teraz', title: 'Fullstack Developer · Freelance', desc: 'Praca z założycielami i zespołami produktowymi nad aplikacjami React/Node. Wdrożone projekty komercyjne i side-projekty w React, TypeScript i Node.' },
+      { year: '2022 · Teraz', title: 'Fullstack Developer · Freelance', desc: 'Praca z założycielami i zespołami produktowymi nad aplikacjami React/Node. Wdrożone projekty komercyjne i side-projekty w React, TypeScript i Node.' },
     ],
   },
 
@@ -215,7 +215,7 @@ const en = {
     downloadCv: 'Download CV',
     stats: [
       { num: 6,   unit: '+', label: 'Shipped projects' },
-      { num: 5,   unit: 'y', label: 'Building for the web' },
+      { num: 3,   unit: '+', label: 'Years of experience' },
       { num: 100, unit: '%', label: 'Responsive · accessible' },
       { num: 1,   unit: '★', label: 'Charity launch — hematobieg.org' },
     ],
@@ -252,7 +252,7 @@ const en = {
       { label: 'Languages',    val: 'PL · EN',                 icon: 'sparkles' },
     ],
     timeline: [
-      { year: '2021 · Now', title: 'Fullstack Developer · Freelance', desc: 'Working with founders & product teams to ship React/Node web apps. Commercial projects and side projects in React, TypeScript and Node.' },
+      { year: '2022 · Now', title: 'Fullstack Developer · Freelance', desc: 'Working with founders & product teams to ship React/Node web apps. Commercial projects and side projects in React, TypeScript and Node.' },
     ],
   },
 
