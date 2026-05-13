@@ -15,6 +15,26 @@ function isMobile() {
   return window.innerWidth < 640;
 }
 
+/* Card is defined OUTSIDE Testimonials so React never remounts it on re-render */
+function Card({ it }) {
+  return (
+    <div className="testi-card-inner">
+      <div className="testi-quote-mark">"</div>
+      <div className="testi-stars">
+        {[0, 1, 2, 3, 4].map((s) => <Icon key={s} name="star" size={13} />)}
+      </div>
+      <div className="testi-text">"{it.text}"</div>
+      <div className="testi-who">
+        <div className="testi-avatar">{it.initials}</div>
+        <div>
+          <div className="testi-name">{it.name}</div>
+          <div className="testi-role">{it.role}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Testimonials({ t }) {
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef);
@@ -75,23 +95,6 @@ export default function Testimonials({ t }) {
     return () => cancelAnimationFrame(rafRef.current);
   }, [mobile]);
 
-  const Card = ({ it }) => (
-    <div className="testi-card-inner">
-      <div className="testi-quote-mark">"</div>
-      <div className="testi-stars">
-        {[0, 1, 2, 3, 4].map((s) => <Icon key={s} name="star" size={13} />)}
-      </div>
-      <div className="testi-text">"{it.text}"</div>
-      <div className="testi-who">
-        <div className="testi-avatar">{it.initials}</div>
-        <div>
-          <div className="testi-name">{it.name}</div>
-          <div className="testi-role">{it.role}</div>
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <section id="voices" ref={sectionRef}>
       <div className="container">
@@ -106,7 +109,7 @@ export default function Testimonials({ t }) {
         {mobile ? (
           /* ── MOBILE: flat slider ── */
           <div className="testi-slider">
-            <div className="testi-slide">
+            <div className="testi-slide" key={activeIdx}>
               <Card it={items[activeIdx]} />
             </div>
             <div className="testi-dots">
