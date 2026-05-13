@@ -1,0 +1,32 @@
+<!doctype html><html data-theme="dark"><head>
+<meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:var(--bg-canvas);color:var(--fg-primary);height:100%;}
+  .stage{padding:20px 24px;display:flex;flex-direction:column;gap:12px;}
+  .ramp{display:grid;grid-template-columns:repeat(11,1fr);gap:6px;}
+  .sw{height:56px;border-radius:var(--radius-sm);display:flex;flex-direction:column;justify-content:flex-end;padding:5px 6px;font-family:var(--font-mono);font-size:9.5px;border:1px solid rgba(255,255,255,.06);}
+  .dark{color:rgba(255,255,255,.9);} .light{color:#0E1117;}
+  .row{display:flex;font-size:12px;color:var(--fg-tertiary);font-family:var(--font-mono);}
+  .row span:last-child{margin-left:auto;}
+</style></head>
+<body><div class="stage">
+  <div class="ramp">
+    <div class="sw light" style="background:#FFFFFF;">0</div>
+    <div class="sw light" style="background:#FAFBFC;">25</div>
+    <div class="sw light" style="background:#F5F7FA;">50</div>
+    <div class="sw light" style="background:#ECEFF3;">100</div>
+    <div class="sw light" style="background:#DCE1E8;">200</div>
+    <div class="sw light" style="background:#C2CAD6;">300</div>
+    <div class="sw dark" style="background:#9AA4B2;">400</div>
+    <div class="sw dark" style="background:#6C7689;">500</div>
+    <div class="sw dark" style="background:#4A5363;">600</div>
+    <div class="sw dark" style="background:#323844;">700</div>
+    <div class="sw dark" style="background:#1F232C;">800</div>
+  </div>
+  <div class="ramp" style="grid-template-columns:repeat(3,1fr);">
+    <div class="sw dark" style="background:#161A22;">850 · surface</div>
+    <div class="sw dark" style="background:#0E1117;outline:1px solid rgba(255,255,255,.12);">900 · canvas★</div>
+    <div class="sw dark" style="background:#08090C;">950 · sunken</div>
+  </div>
+  <div class="row"><span>slate ramp · 0 → 950</span><span>dark surfaces below 850</span></div>
+</div></body></html>

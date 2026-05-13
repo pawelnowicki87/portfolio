@@ -1,0 +1,22 @@
+<!doctype html><html data-theme="dark"><head>
+<meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:var(--bg-canvas);color:var(--fg-primary);height:100%;}
+  .stage{padding:20px 24px;display:flex;flex-direction:column;gap:10px;}
+  .toast{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:var(--radius-md);background:var(--bg-elevated);border:1px solid var(--border-default);box-shadow:var(--shadow-md);max-width:520px;}
+  .icon{width:18px;height:18px;flex-shrink:0;margin-top:1px;}
+  .icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+  .body{flex:1;}
+  .title{font-size:13px;font-weight:600;color:var(--fg-primary);margin:0;}
+  .desc{font-size:12px;color:var(--fg-secondary);margin:2px 0 0;}
+  .close{color:var(--fg-tertiary);cursor:pointer;width:18px;height:18px;}
+  .ok .icon{color:var(--status-success-fg);}
+  .warn .icon{color:var(--status-warning-fg);}
+  .err .icon{color:var(--status-danger-fg);}
+  .info .icon{color:var(--status-info-fg);}
+</style></head>
+<body><div class="stage">
+  <div class="toast ok"><span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></span><div class="body"><div class="title">Message sent</div><div class="desc">Paweł will reply within one business day.</div></div></div>
+  <div class="toast info"><span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></span><div class="body"><div class="title">Deployment in progress</div><div class="desc">phone-catalog · eu-central-1 · ETA 2 min</div></div></div>
+  <div class="toast err"><span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15 9-6 6m0-6 6 6"/></svg></span><div class="body"><div class="title">Couldn't load project</div><div class="desc">The connection timed out — try again.</div></div></div>
+</div></body></html>
