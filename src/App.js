@@ -1,36 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Stack from './components/Stack';
 import Projects from './components/Projects';
-import Contact from './components/Contact';
 import About from './components/About';
+import Contact from './components/Contact';
 import texts from './texts';
-
-import './App.css';
+import './index.css';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [language, setLanguage] = useState('pl');
 
   useEffect(() => {
-    document.body.className = darkMode ? 'dark-mode' : 'light-mode';
+    document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+    document.body.style.background = darkMode ? '#06070a' : '#fafbfc';
   }, [darkMode]);
 
   const t = texts[language];
 
   return (
     <>
-      <Header
+      <Navbar
         t={t}
         language={language}
         setLanguage={setLanguage}
         darkMode={darkMode}
         setDarkMode={setDarkMode}
       />
-      <About t={t} 
-        darkMode={darkMode} 
-        language={language}/>
-      <Projects t={t} />
-      <Contact t={t} darkMode={darkMode} />
+      <main>
+        <Hero t={t} language={language} />
+        <Stack t={t} />
+        <Projects t={t} language={language} />
+        <About t={t} language={language} />
+        <Contact t={t} />
+      </main>
     </>
   );
 }
