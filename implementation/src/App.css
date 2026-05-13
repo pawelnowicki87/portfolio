@@ -6,8 +6,8 @@
 
 @font-face {
   font-family: 'Golos Text';
-  src: url('./fonts/GolosText-VariableFont_wght.ttf') format('truetype-variations'),
-       url('./fonts/GolosText-VariableFont_wght.ttf') format('truetype');
+  src: url('/fonts/GolosText-VariableFont_wght.ttf') format('truetype-variations'),
+       url('/fonts/GolosText-VariableFont_wght.ttf') format('truetype');
   font-weight: 400 900;
   font-style: normal;
   font-display: swap;
@@ -887,79 +887,66 @@ section { position: relative; padding: clamp(80px, 12vw, 140px) clamp(20px, 4vw,
 .project-actions .btn { height: 38px; padding: 0 16px; font-size: 13px; }
 
 /* ============================================================
-   TESTIMONIALS — 3D CAROUSEL
+   TESTIMONIALS
    ============================================================ */
-.testi-scene {
-  perspective: 1400px;
-  perspective-origin: 50% 40%;
-  height: 360px;
-  position: relative;
-  margin: 40px 0 20px;
-  overflow: visible;
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
-.testi-stage {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-}
+@media (max-width: 900px) { .testi-grid { grid-template-columns: 1fr; } }
 .testi {
-  position: absolute;
-  width: 270px;
-  left: calc(50% - 135px);
-  top: 0;
-  padding: 22px 22px 20px;
+  padding: 28px 28px 26px;
   border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, rgba(28, 46, 70, 0.72), rgba(14, 24, 38, 0.6));
+  background: linear-gradient(180deg, rgba(28, 46, 70, 0.55), rgba(14, 24, 38, 0.4));
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  backdrop-filter: blur(16px);
+  position: relative;
   overflow: hidden;
-  box-shadow: 0 24px 60px -12px rgba(0,0,0,0.55);
+  transition: all var(--motion-base);
 }
 .testi::before {
   content: ""; position: absolute; inset: -1px;
   border-radius: inherit; pointer-events: none;
-  background: linear-gradient(135deg, rgba(95, 199, 209, 0.22), transparent 35%);
-  opacity: 0.65;
+  background: linear-gradient(135deg, rgba(95, 199, 209, 0.25), transparent 30%);
+  opacity: 0.6;
   mix-blend-mode: screen;
 }
+.testi:hover { transform: translateY(-3px); border-color: var(--glass-border-strong); }
 .testi-quote-mark {
   position: absolute;
-  top: 10px; right: 18px;
+  top: 14px; right: 22px;
   font-family: var(--font-display);
-  font-size: 80px;
+  font-size: 100px;
   font-weight: 800;
   line-height: 0.8;
   color: var(--accent);
-  opacity: 0.16;
+  opacity: 0.18;
 }
 .testi-text {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--fg-1);
-  line-height: 1.6;
-  margin-bottom: 18px;
+  line-height: 1.55;
+  margin-bottom: 22px;
   position: relative;
   z-index: 1;
 }
-.testi-stars { display: flex; gap: 2px; margin-bottom: 12px; color: var(--accent-bright); }
-.testi-stars svg { width: 13px; height: 13px; }
+.testi-stars { display: flex; gap: 2px; margin-bottom: 14px; color: var(--accent-bright); }
+.testi-stars svg { width: 14px; height: 14px; }
 .testi-who { display: flex; align-items: center; gap: 12px; position: relative; z-index: 1; }
 .testi-avatar {
-  width: 40px; height: 40px;
+  width: 44px; height: 44px;
   border-radius: 999px;
   display: grid; place-items: center;
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: #04111a;
   background: linear-gradient(135deg, var(--voka-teal-300), var(--voka-teal-500));
-  border: 2px solid rgba(255,255,255,0.12);
-  flex-shrink: 0;
+  border: 2px solid rgba(255,255,255,0.1);
 }
-.testi-name { color: var(--fg-1); font-weight: 600; font-size: 13px; }
-.testi-role { color: var(--fg-3); font-size: 11px; margin-top: 1px; }
+.testi-name { color: var(--fg-1); font-weight: 600; font-size: 14px; }
+.testi-role { color: var(--fg-3); font-size: 12px; }
 
 /* ============================================================
    CONTACT
@@ -1064,7 +1051,7 @@ section { position: relative; padding: clamp(80px, 12vw, 140px) clamp(20px, 4vw,
    FOOTER
    ============================================================ */
 .footer {
-  padding: 40px clamp(20px, 4vw, 60px) 120px;
+  padding: 40px clamp(20px, 4vw, 60px) 28px;
   border-top: 1px solid rgba(255,255,255,0.06);
   display: flex; align-items: center; justify-content: space-between;
   gap: 16px;
@@ -1113,130 +1100,9 @@ section { position: relative; padding: clamp(80px, 12vw, 140px) clamp(20px, 4vw,
     radial-gradient(60% 50% at 15% 10%, rgba(25, 146, 163, 0.18), transparent 70%),
     radial-gradient(50% 40% at 90% 110%, rgba(20, 119, 138, 0.14), transparent 70%);
 }
-.theme-light .nav.scrolled { background: rgba(255,255,255,0.82); backdrop-filter: saturate(140%) blur(18px); }
+.theme-light .nav.scrolled { background: rgba(255,255,255,0.75); }
 .theme-light .btn-primary { color: #fff; }
 .theme-light .testi-quote-mark { opacity: 0.12; }
-
-/* grad-text: biały gradient niewidoczny na jasnym tle – zmień na ciemny-do-teal */
-.theme-light .grad-text {
-  background: linear-gradient(120deg, var(--voka-ink-900) 20%, var(--voka-teal-600) 60%, var(--voka-teal-400) 90%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Odznaka statusu bohatera – niewidoczna na jasnym tle */
-.theme-light .hero-status {
-  background: rgba(25, 146, 163, 0.08);
-  border-color: rgba(25, 146, 163, 0.22);
-}
-
-/* Statystyki w hero – ciemne tło odwrócone */
-.theme-light .hero-stats {
-  background: rgba(255,255,255,0.5);
-  border-color: rgba(25, 146, 163, 0.16);
-}
-.theme-light .hero-stat {
-  background: rgba(255,255,255,0.7);
-}
-.theme-light .hero-stat + .hero-stat {
-  border-left: 1px solid rgba(25, 146, 163, 0.12);
-}
-
-/* Nawigacja – przyciski i lang-switch na jasnym tle */
-.theme-light .lang-switch {
-  background: rgba(25, 146, 163, 0.06);
-  border-color: rgba(25, 146, 163, 0.18);
-}
-.theme-light .lang-btn { color: var(--fg-3); }
-.theme-light .lang-btn:hover { color: var(--fg-1); }
-.theme-light .icon-btn {
-  background: rgba(25, 146, 163, 0.06);
-  border-color: rgba(25, 146, 163, 0.18);
-  color: var(--fg-2);
-}
-.theme-light .icon-btn:hover { background: rgba(25, 146, 163, 0.12); border-color: var(--glass-border-strong); }
-
-/* Btn ghost – niewidoczny border na jasnym tle */
-.theme-light .btn-ghost {
-  background: rgba(25, 146, 163, 0.06);
-  border-color: rgba(25, 146, 163, 0.22);
-  color: var(--fg-1);
-}
-.theme-light .btn-ghost:hover {
-  background: rgba(25, 146, 163, 0.12);
-  border-color: var(--glass-border-strong);
-}
-
-/* Karty skill – ciemne gradienty odwrócone */
-.theme-light .skill {
-  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(240,246,248,0.7));
-  border-color: rgba(25, 146, 163, 0.14);
-}
-.theme-light .skill-name { color: var(--fg-1); }
-.theme-light .skill-bar { background: rgba(25, 146, 163, 0.1); }
-
-/* Karty projektów – ciemne tło odwrócone */
-.theme-light .project {
-  background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
-  border-color: rgba(25, 146, 163, 0.16);
-}
-.theme-light .project-title { color: var(--fg-1); }
-.theme-light .project-desc  { color: var(--fg-3); }
-.theme-light .project-chip {
-  background: rgba(25, 146, 163, 0.08);
-  border-color: rgba(25, 146, 163, 0.16);
-  color: var(--fg-2);
-}
-.theme-light .project-tag {
-  background: rgba(255,255,255,0.75);
-  border-color: rgba(25, 146, 163, 0.2);
-  color: var(--fg-2);
-}
-.theme-light .project-num { color: var(--fg-4); }
-
-/* Karuzela testimonials */
-.theme-light .testi {
-  background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(240,246,248,0.75));
-  border-color: rgba(25, 146, 163, 0.18);
-  box-shadow: 0 24px 60px -12px rgba(25, 146, 163, 0.18);
-}
-.theme-light .testi-text { color: var(--fg-1); }
-
-/* Kontakt – elementy info */
-.theme-light .contact-item {
-  background: rgba(255,255,255,0.7);
-  border-color: rgba(25, 146, 163, 0.16);
-}
-.theme-light .contact-card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(240,246,248,0.7));
-  border-color: rgba(25, 146, 163, 0.18);
-}
-.theme-light .field-input, .theme-light .field-textarea {
-  background: rgba(255,255,255,0.8);
-  border-color: rgba(25, 146, 163, 0.2);
-  color: var(--fg-1);
-}
-.theme-light .field-input::placeholder, .theme-light .field-textarea::placeholder { color: var(--fg-4); }
-.theme-light .field-input:focus, .theme-light .field-textarea:focus {
-  background: #fff;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 4px rgba(25, 146, 163, 0.12);
-}
-
-/* Footer */
-.theme-light .footer {
-  border-top-color: rgba(25, 146, 163, 0.14);
-}
-
-/* About */
-.theme-light .about-meta-item {
-  background: rgba(255,255,255,0.65);
-  border-color: rgba(25, 146, 163, 0.14);
-}
-.theme-light .timeline::before {
-  background: linear-gradient(180deg, transparent, rgba(25, 146, 163, 0.3) 20%, rgba(25, 146, 163, 0.3) 80%, transparent);
-}
 
 /* Accent variants */
 .accent-teal { /* default — kept for explicitness */ }
