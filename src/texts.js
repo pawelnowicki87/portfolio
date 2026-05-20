@@ -108,6 +108,13 @@ const pl = {
     demo: 'Live demo',
     items: [
       {
+        title: 'BalkonSonne App',
+        tag: 'SaaS · AI · Live',
+        desc: 'Wielojęzyczny wizard React + TypeScript + MUI z AI, który analizuje nasłonecznienie balkonu i ocenia opłacalność instalacji małych paneli fotowoltaicznych.',
+        chips: ['React', 'TypeScript', 'MUI', 'AI'],
+        layout: 'feature',
+      },
+      {
         title: 'Hematobieg',
         tag: 'Komercyjny · Live',
         desc: 'Ogólnopolska platforma biegu charytatywnego wspierającego pacjentów z białaczką. Zrobione od A do Z: strona, rejestracja, prezentacja sponsorów, strony contentowe.',
@@ -115,25 +122,18 @@ const pl = {
         layout: 'feature',
       },
       {
-        title: 'BalkonSonne App',
-        tag: 'SaaS · AI · Live',
-        desc: 'Wielojęzyczny wizard React + TypeScript + MUI z AI, który analizuje nasłonecznienie balkonu i ocenia opłacalność instalacji małych paneli fotowoltaicznych.',
-        chips: ['React', 'TypeScript', 'MUI', 'AI'],
-        layout: 'third',
-      },
-      {
         title: 'Phone Catalog',
         tag: 'eCommerce',
         desc: 'Kompletny sklep z telefonami i akcesoriami: przeglądanie katalogu, koszyk, ulubione, karta produktu z karuzelą zdjęć i wyborem wariantu.',
         chips: ['React', 'TypeScript', 'Sass'],
-        layout: 'third',
+        layout: 'half',
       },
       {
         title: 'Welcome to the MET',
         tag: 'Marketing',
         desc: 'W pełni responsywna strona muzeum z galeriami hero, podstronami wystaw i formularzem kontaktowym. Mobile-first, pikselowo dopracowane.',
         chips: ['HTML', 'Sass', 'BEM'],
-        layout: 'third',
+        layout: 'half',
       },
     ],
   },
@@ -277,10 +277,10 @@ const en = {
     sub: "From a charity platform to e-commerce and a marketing site — a snapshot of what I've shipped.",
     demo: 'Live demo',
     items: [
+      { title: 'BalkonSonne App',    tag: 'SaaS · AI · Live',  desc: 'A multilingual React + TypeScript + MUI wizard using AI to analyze balcony sunlight and evaluate the feasibility and profitability of small solar panels.',      chips: ['React', 'TypeScript', 'MUI', 'AI'],        layout: 'feature' },
       { title: 'Hematobieg',         tag: 'Commercial · Live', desc: 'A national charity-run platform supporting Polish leukemia patients. Built end-to-end: marketing site, registration flow, sponsor showcase, content pages.', chips: ['React', 'Bootstrap', 'Responsive', 'CMS'], layout: 'feature' },
-      { title: 'BalkonSonne App',    tag: 'SaaS · AI · Live',  desc: 'A multilingual React + TypeScript + MUI wizard using AI to analyze balcony sunlight and evaluate the feasibility and profitability of small solar panels.',      chips: ['React', 'TypeScript', 'MUI', 'AI'],        layout: 'third' },
-      { title: 'Phone Catalog',      tag: 'eCommerce',         desc: 'A complete online store for phones and mobile accessories: catalog browsing, cart, favorites, product detail with image carousel and variant picker.',      chips: ['React', 'TypeScript', 'Sass'],             layout: 'third' },
-      { title: 'Welcome to the MET', tag: 'Marketing site',    desc: 'A fully responsive museum experience with hero galleries, exhibition pages and a contact form. Pixel-tight, mobile-first.',                                chips: ['HTML', 'Sass', 'BEM'],                    layout: 'third' },
+      { title: 'Phone Catalog',      tag: 'eCommerce',         desc: 'A complete online store for phones and mobile accessories: catalog browsing, cart, favorites, product detail with image carousel and variant picker.',      chips: ['React', 'TypeScript', 'Sass'],             layout: 'half' },
+      { title: 'Welcome to the MET', tag: 'Marketing site',    desc: 'A fully responsive museum experience with hero galleries, exhibition pages and a contact form. Pixel-tight, mobile-first.',                                chips: ['HTML', 'Sass', 'BEM'],                    layout: 'half' },
     ],
   },
 
