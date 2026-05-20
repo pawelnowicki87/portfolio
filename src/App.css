@@ -934,7 +934,23 @@ section { position: relative; padding: clamp(80px, 12vw, 140px) clamp(20px, 4vw,
 .project.feature {
   grid-column: span 12;
   flex-direction: row;
-  min-height: 400px;
+  height: 420px;
+}
+/* ── Feature-alt: image LEFT, text RIGHT ── */
+.project.feature-alt {
+  grid-column: span 12;
+  flex-direction: row;
+  height: 420px;
+}
+.project.feature-alt .project-media {
+  flex: 0 0 58%;
+  order: 1;
+}
+.project.feature-alt .project-body {
+  order: 2;
+}
+.project.feature-alt .project-media::before {
+  background: linear-gradient(90deg, transparent 70%, rgba(10,18,29,0.6) 100%);
 }
 /* ── Compact: 1/3 width ── */
 .project.compact {
@@ -1080,17 +1096,21 @@ section { position: relative; padding: clamp(80px, 12vw, 140px) clamp(20px, 4vw,
 
 /* ── Responsive ── */
 @media (max-width: 980px) {
-  .project, .project.feature, .project.compact {
+  .project, .project.feature, .project.feature-alt, .project.compact {
     grid-column: span 12;
     flex-direction: column;
-    min-height: unset;
+    height: auto;
   }
-  .project.feature .project-media { flex: 0 0 220px; order: 0; }
-  .project.feature .project-media::before {
+  .project.feature .project-media,
+  .project.feature-alt .project-media { flex: 0 0 220px; order: 0; }
+  .project.feature .project-media::before,
+  .project.feature-alt .project-media::before {
     background: linear-gradient(180deg, transparent 55%, rgba(10,18,29,0.5) 85%, rgba(10,18,29,0.75) 100%);
   }
-  .project.feature .project-media::after { display: block; }
-  .project.feature .project-body { max-width: 100%; padding: 28px 24px 32px; }
+  .project.feature .project-media::after,
+  .project.feature-alt .project-media::after { display: block; }
+  .project.feature .project-body,
+  .project.feature-alt .project-body { order: 1; max-width: 100%; padding: 28px 24px 32px; }
   .project-media, .project.compact .project-media { flex-basis: 200px; }
 }
 
