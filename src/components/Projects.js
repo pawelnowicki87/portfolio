@@ -5,11 +5,13 @@ import { useInView, useMouseTrack } from '../hooks';
 import hematobieg    from '../image/Hematobieg.png';
 import phonecatalog  from '../image/phonecatalog.png';
 import welcome       from '../image/welcometothemet.png';
+import balconsonne   from '../image/balconsolar.jpeg';
 
-const IMAGES = [hematobieg, phonecatalog, welcome];
+const IMAGES = [hematobieg, balconsonne, phonecatalog, welcome];
 
 const LINKS = [
   { demo: 'https://hematobieg.org/' },
+  { demo: 'https://balkonsonne.app/?lang=en&utm_source=chatgpt.com' },
   { demo: 'https://pawelnowicki87.github.io/react_phone-catalog/' },
   { demo: 'https://pawelnowicki87.github.io/welcome_to_the_met/' },
 ];
