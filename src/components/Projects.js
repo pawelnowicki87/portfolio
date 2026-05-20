@@ -6,10 +6,12 @@ import hematobieg    from '../image/Hematobieg.png';
 import phonecatalog  from '../image/phonecatalog.png';
 import welcome       from '../image/welcometothemet.png';
 import balconsonne   from '../image/balconsolar.jpeg';
+import smileexpress  from '../image/smileexpress.png';
 
-const IMAGES = [balconsonne, hematobieg, phonecatalog, welcome];
+const IMAGES = [smileexpress, balconsonne, hematobieg, phonecatalog, welcome];
 
 const LINKS = [
+  { demo: 'https://smileexpress.com/' },
   { demo: 'https://balkonsonne.app/?lang=en&utm_source=chatgpt.com' },
   { demo: 'https://hematobieg.org/' },
   { demo: 'https://pawelnowicki87.github.io/react_phone-catalog/' },
@@ -18,8 +20,9 @@ const LINKS = [
 
 function ProjectCard({ p, i, inView, t }) {
   const [ref, onMouseMove] = useMouseTrack();
-  const cls = p.layout === 'feature' ? 'project feature' :
-              p.layout === 'third'   ? 'project compact' : 'project';
+  const cls = p.layout === 'feature'     ? 'project feature' :
+              p.layout === 'feature-alt' ? 'project feature feature-alt' :
+              p.layout === 'third'       ? 'project compact' : 'project';
   return (
     <div
       ref={ref}
