@@ -7,7 +7,7 @@ import { useTypewriter, scrollToId } from '../hooks';
 export default function Hero({ t, language, enable3D = true }) {
   const canvasRef = useRef(null);
   const role = useTypewriter(t.hero.roles);
-  const cvFile = (process.env.PUBLIC_URL || '') + (language === 'pl' ? '/cv_pl.pdf' : '/cv_en.pdf');
+  const cvFile = (process.env.PUBLIC_URL || '') + '/CV_Pawel_Nowicki.pdf';
   const titleWords = t.hero.title;
 
   return (
