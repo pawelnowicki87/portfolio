@@ -997,14 +997,31 @@ section { position: relative; padding: clamp(80px, 12vw, 140px) clamp(20px, 4vw,
   object-fit: cover; object-position: top center;
   display: block;
 }
-/* Middle slot (promo reel) sits proud of the two screenshots */
+/* Middle slot (promo reel) sits proud of the two screenshots.
+   Its frame carries the source's own 9:16 ratio, so the reel fills it
+   edge to edge without a crop and without letterbox bars. */
 .phone-reel {
-  flex: 0 1 166px;
+  flex: 0 1 187px;
+  aspect-ratio: 9 / 16;
   z-index: 2;
   border-color: rgba(95,199,209,0.4);
   box-shadow: 0 24px 55px -14px rgba(0,0,0,0.85), 0 0 0 1px rgba(95,199,209,0.18);
 }
-.phone-reel video { object-fit: cover; background: #000; }
+/* contain, never cover: object-fit survives into native fullscreen, where
+   cover would stretch a portrait reel across a landscape screen and slice
+   the sides off. Letterboxing is the correct answer there. */
+.phone-reel video {
+  object-fit: contain;
+  object-position: center;
+  background: #000;
+}
+.phone-reel video:fullscreen,
+.phone-reel video:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
 .project-showcase:hover .phone:first-child  { transform: translateY(-4px) rotate(-2deg); }
 .project-showcase:hover .phone:last-child   { transform: translateY(-4px) rotate(2deg); }
 .project-showcase:hover .phone-reel         { transform: translateY(-8px); }
@@ -1323,7 +1340,7 @@ section { position: relative; padding: clamp(80px, 12vw, 140px) clamp(20px, 4vw,
     -webkit-overflow-scrolling: touch;
   }
   .phone { flex: 0 0 132px; scroll-snap-align: center; }
-  .phone-reel { flex: 0 0 146px; }
+  .phone-reel { flex: 0 0 165px; }
   .project.project-showcase .project-media::after { display: none; }
 }
 
