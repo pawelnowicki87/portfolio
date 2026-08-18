@@ -1166,6 +1166,68 @@ section { position: relative; padding: clamp(80px, 12vw, 140px) clamp(20px, 4vw,
   outline-offset: 2px;
 }
 
+/* ── Reel strip: picks which campaign spot plays in the middle phone ── */
+.reel-strip { display: flex; flex-direction: column; gap: 8px; margin-top: 2px; }
+.reel-strip-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-4);
+}
+.reel-strip-items {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: thin;
+}
+.reel-thumb {
+  flex: 0 0 auto;
+  width: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--fg-4);
+  cursor: pointer;
+  font: inherit;
+}
+.reel-thumb img {
+  width: 52px;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  border-radius: 7px;
+  border: 1px solid rgba(255,255,255,0.14);
+  opacity: 0.5;
+  transition: opacity var(--motion-fast), border-color var(--motion-fast), transform var(--motion-fast);
+  display: block;
+}
+.reel-thumb:hover img { opacity: 0.85; transform: translateY(-2px); }
+.reel-thumb.is-active img {
+  opacity: 1;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 6px 16px -6px var(--accent-glow);
+}
+.reel-thumb-name {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+.reel-thumb.is-active .reel-thumb-name { color: var(--voka-teal-200); }
+.reel-thumb:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+
+.theme-light .reel-thumb img { border-color: rgba(0,0,0,0.12); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reel-thumb:hover img { transform: none; }
+}
+
 /* ── Lightbox ── */
 .lightbox {
   position: fixed;

@@ -10,13 +10,21 @@ import balconsonne   from '../image/balconsolar.jpeg';
 import smileexpress  from '../image/smileexpress.png';
 import vfgPrezenty   from '../image/vfg-prezenty.webp';
 import vfgWydarzenie from '../image/vfg-wydarzenie.webp';
-import vfgPoster     from '../image/vfg-reel-poster.webp';
+import reelPoster1   from '../image/vfg-reel-01-poster.webp';
+import reelPoster2   from '../image/vfg-reel-02-poster.webp';
+import reelPoster3   from '../image/vfg-reel-03-poster.webp';
+import reelPoster4   from '../image/vfg-reel-04-poster.webp';
+import reelPoster5   from '../image/vfg-reel-05-poster.webp';
 
-const REEL = (process.env.PUBLIC_URL || '') + '/media/voteforgift-reel.mp4';
+const PUB = process.env.PUBLIC_URL || '';
+const REELS = [reelPoster1, reelPoster2, reelPoster3, reelPoster4, reelPoster5].map((poster, i) => ({
+  poster,
+  src: `${PUB}/media/vfg-reel-0${i + 1}.mp4`,
+}));
 
 /* Media & links keyed by project id — order of items in texts.js can change freely. */
 const MEDIA = {
-  voteforgift:     { kind: 'phones', shots: [vfgPrezenty, vfgWydarzenie], video: REEL, poster: vfgPoster },
+  voteforgift:     { kind: 'phones', shots: [vfgPrezenty, vfgWydarzenie], reels: REELS },
   smileexpress:    { kind: 'shot', src: smileexpress },
   balconsonne:     { kind: 'shot', src: balconsonne },
   hematobieg:      { kind: 'shot', src: hematobieg },
@@ -70,9 +78,11 @@ function Lightbox({ shot, onClose, closeLabel }) {
   );
 }
 
-function ProjectMedia({ p, media, onOpen }) {
+function ProjectMedia({ p, media, onOpen, activeReel }) {
   if (media.kind === 'phones') {
     const alt = p.shots || [];
+    const reel = media.reels[activeReel];
+    const reelName = (p.reels || [])[activeReel] || '';
     return (
       <div className="project-media phone-stack">
         <button
@@ -84,13 +94,15 @@ function ProjectMedia({ p, media, onOpen }) {
           <img src={media.shots[0]} alt="" loading="lazy" />
         </button>
         <div className="phone phone-reel">
+          {/* key remounts the element so a new src actually loads */}
           <video
-            src={media.video}
-            poster={media.poster}
+            key={activeReel}
+            src={reel.src}
+            poster={reel.poster}
             controls
             preload="none"
             playsInline
-            aria-label={p.reelAlt || p.title}
+            aria-label={`${p.reelAlt || p.title} — ${reelName}`}
           />
         </div>
         <button
@@ -116,8 +128,31 @@ function ProjectMedia({ p, media, onOpen }) {
   );
 }
 
+function ReelStrip({ p, media, active, onPick, label }) {
+  return (
+    <div className="reel-strip">
+      <span className="reel-strip-label">{label}</span>
+      <div className="reel-strip-items">
+        {p.reels.map((name, idx) => (
+          <button
+            key={name}
+            type="button"
+            className={'reel-thumb' + (idx === active ? ' is-active' : '')}
+            onClick={() => onPick(idx)}
+            aria-pressed={idx === active}
+          >
+            <img src={media.reels[idx].poster} alt="" loading="lazy" />
+            <span className="reel-thumb-name">{name}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function ProjectCard({ p, i, inView, t, onOpen }) {
   const [ref, onMouseMove] = useMouseTrack();
+  const [activeReel, setActiveReel] = useState(0);
   const media = MEDIA[p.key];
   const cls = LAYOUT_CLASS[p.layout] || 'project';
   return (
@@ -129,13 +164,22 @@ function ProjectCard({ p, i, inView, t, onOpen }) {
       <div className="project-tag"><span className="dot" />{p.tag}</div>
       <div className="project-num">/ 0{i + 1}</div>
       <div className="project-glow" />
-      <ProjectMedia p={p} media={media} onOpen={onOpen} />
+      <ProjectMedia p={p} media={media} onOpen={onOpen} activeReel={activeReel} />
       <div className="project-body">
         <div className="project-title">{p.title}</div>
         <div className="project-desc">{p.desc}</div>
         <div className="project-meta">
           {p.chips.map((c) => <span key={c} className="project-chip">{c}</span>)}
         </div>
+        {media.kind === 'phones' && p.reels && (
+          <ReelStrip
+            p={p}
+            media={media}
+            active={activeReel}
+            onPick={setActiveReel}
+            label={t.projectsSec.reelStrip}
+          />
+        )}
         <div className="project-actions">
           <a className="btn btn-primary" href={LINKS[p.key]} target="_blank" rel="noreferrer">
             {t.projectsSec.demo} <Icon name="arrow-up-right" size={14} />

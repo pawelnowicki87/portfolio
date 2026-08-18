@@ -107,6 +107,7 @@ const pl = {
     sub: 'Od platformy charytatywnej po e-commerce i marketing site — przekrój tego, co wdrożyłem.',
     demo: 'Live demo',
     closeImage: 'Zamknij podgląd',
+    reelStrip: 'Kampania — 5 spotów',
     items: [
       {
         key: 'voteforgift',
@@ -120,6 +121,7 @@ const pl = {
           'VoteForGift — szczegóły wydarzenia: oś czasu zbiórki, wybrany prezent i płatność BLIK',
         ],
         reelAlt: 'Spot reklamowy VoteForGift',
+        reels: ['Główny', 'TikTok', 'Szkoły B2B', 'Emocjonalny', 'Hook'],
       },
       {
         key: 'smileexpress',
@@ -303,6 +305,7 @@ const en = {
     sub: "From a charity platform to e-commerce and a marketing site — a snapshot of what I've shipped.",
     demo: 'Live demo',
     closeImage: 'Close preview',
+    reelStrip: 'Campaign — 5 spots',
     items: [
       {
         key: 'voteforgift',
@@ -316,6 +319,7 @@ const en = {
           'VoteForGift — event detail: collection timeline, winning gift and BLIK payment',
         ],
         reelAlt: 'VoteForGift promo video',
+        reels: ['Main', 'TikTok', 'Schools B2B', 'Emotional', 'Hook'],
       },
       { key: 'smileexpress', title: 'Smile Express',       tag: 'Clinic · Live',     desc: 'Multi-location dental clinic platform: office finder and multi-step booking wizard with OTP verification, calendar scheduling, LeadSigma & GTM integrations. TypeScript/React 19 monorepo (Turborepo, pnpm) with Next.js 16, Fastify, Azure Key Vault, Datadog, Sentry and Playwright e2e tests.', chips: ['Next.js', 'React 19', 'TypeScript', 'Fastify', 'Turborepo', 'Azure'], layout: 'feature' },
       { key: 'balconsonne', title: 'BalkonSonne App',    tag: 'SaaS · AI · Live',  desc: 'A multilingual React + TypeScript + MUI wizard using AI to analyze balcony sunlight and evaluate the feasibility and profitability of small solar panels.',      chips: ['React', 'TypeScript', 'MUI', 'AI'],        layout: 'feature-alt' },
