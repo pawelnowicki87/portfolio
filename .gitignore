@@ -22,3 +22,6 @@ yarn-error.log*
 # Editor
 .DS_Store
 Thumbs.db
+
+# Duplikat CV opublikowanego w public/
+src/image/CV*.pdf
