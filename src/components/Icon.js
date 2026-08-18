@@ -10,6 +10,7 @@ const PATHS = {
   'pin':            (s) => <svg {...s}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>,
   'star':           (s) => <svg width={s.width} height={s.height} viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3 5.8 21l1.7-7-5.5-4.7 7.2-.6L12 2l2.8 6.7 7.2.6-5.5 4.7 1.7 7Z"/></svg>,
   'check':          (s) => <svg {...s}><path d="m5 12 5 5L20 7"/></svg>,
+  'x':              (s) => <svg {...s}><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>,
   'code':           (s) => <svg {...s}><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>,
   'react':          (s) => <svg {...s}><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></svg>,
   'js':             (s) => <svg {...s}><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 10v6a2 2 0 1 1-4 0"/><path d="M19 10s-1-1-3-1c-1.5 0-3 .7-3 2 0 2.5 5 2 5 4.5 0 1.3-1.4 2-3 2-2 0-3-1-3-1"/></svg>,
