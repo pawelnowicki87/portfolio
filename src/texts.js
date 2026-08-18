@@ -108,6 +108,20 @@ const pl = {
     demo: 'Live demo',
     items: [
       {
+        key: 'voteforgift',
+        title: 'VoteForGift',
+        tag: 'Produkt własny · Live',
+        desc: 'Platforma do wspólnego wybierania i opłacania prezentów. Grupa — rodzina, klasa albo zespół — zakłada wydarzenie, członkowie proponują prezenty i głosują, a potem składają się na zwycięski przez BLIK. Architektura mikroserwisowa: Next.js 16 na froncie, gateway i serwisy NestJS na Prismie, komunikacja przez RabbitMQ, płatności Tpay z idempotencją i niezmiennym rejestrem zdarzeń. Do tego maskowanie danych osobowych pod RODO, audit log, własna dokumentacja QA i raport z testów bezpieczeństwa.',
+        chips: ['Next.js 16', 'NestJS', 'Prisma', 'PostgreSQL', 'RabbitMQ', 'Tpay · BLIK'],
+        layout: 'showcase',
+        shots: [
+          'VoteForGift — ranking propozycji prezentów z liczbą głosów i linkami do sklepów',
+          'VoteForGift — szczegóły wydarzenia: oś czasu zbiórki, wybrany prezent i płatność BLIK',
+        ],
+        reelAlt: 'Spot reklamowy VoteForGift',
+      },
+      {
+        key: 'smileexpress',
         title: 'Smile Express',
         tag: 'Klinika · Live',
         desc: 'Platforma dla sieci klinik stomatologicznych: wyszukiwanie gabinetów i rezerwacja wizyt przez wieloetapowy wizard (weryfikacja OTP, kalendarz, integracje CRM/GTM). Monorepo TypeScript/React 19 z Next.js 16, Fastify, Azure Key Vault, Datadog, Sentry i testami Playwright.',
@@ -115,6 +129,7 @@ const pl = {
         layout: 'feature',
       },
       {
+        key: 'balconsonne',
         title: 'BalkonSonne App',
         tag: 'SaaS · AI · Live',
         desc: 'Wielojęzyczny wizard React + TypeScript + MUI z AI, który analizuje nasłonecznienie balkonu i ocenia opłacalność instalacji małych paneli fotowoltaicznych.',
@@ -122,6 +137,7 @@ const pl = {
         layout: 'feature-alt',
       },
       {
+        key: 'hematobieg',
         title: 'Hematobieg',
         tag: 'Komercyjny · Live',
         desc: 'Ogólnopolska platforma biegu charytatywnego wspierającego pacjentów z białaczką. Zrobione od A do Z: strona, rejestracja, prezentacja sponsorów, strony contentowe.',
@@ -129,6 +145,7 @@ const pl = {
         layout: 'feature',
       },
       {
+        key: 'phonecatalog',
         title: 'Phone Catalog',
         tag: 'eCommerce',
         desc: 'Kompletny sklep z telefonami i akcesoriami: przeglądanie katalogu, koszyk, ulubione, karta produktu z karuzelą zdjęć i wyborem wariantu.',
@@ -136,6 +153,7 @@ const pl = {
         layout: 'half',
       },
       {
+        key: 'welcometothemet',
         title: 'Welcome to the MET',
         tag: 'Marketing',
         desc: 'W pełni responsywna strona muzeum z galeriami hero, podstronami wystaw i formularzem kontaktowym. Mobile-first, pikselowo dopracowane.',
@@ -284,11 +302,24 @@ const en = {
     sub: "From a charity platform to e-commerce and a marketing site — a snapshot of what I've shipped.",
     demo: 'Live demo',
     items: [
-      { title: 'Smile Express',       tag: 'Clinic · Live',     desc: 'Multi-location dental clinic platform: office finder and multi-step booking wizard with OTP verification, calendar scheduling, LeadSigma & GTM integrations. TypeScript/React 19 monorepo (Turborepo, pnpm) with Next.js 16, Fastify, Azure Key Vault, Datadog, Sentry and Playwright e2e tests.', chips: ['Next.js', 'React 19', 'TypeScript', 'Fastify', 'Turborepo', 'Azure'], layout: 'feature' },
-      { title: 'BalkonSonne App',    tag: 'SaaS · AI · Live',  desc: 'A multilingual React + TypeScript + MUI wizard using AI to analyze balcony sunlight and evaluate the feasibility and profitability of small solar panels.',      chips: ['React', 'TypeScript', 'MUI', 'AI'],        layout: 'feature-alt' },
-      { title: 'Hematobieg',         tag: 'Commercial · Live', desc: 'A national charity-run platform supporting Polish leukemia patients. Built end-to-end: marketing site, registration flow, sponsor showcase, content pages.', chips: ['React', 'Bootstrap', 'Responsive', 'CMS'], layout: 'feature' },
-      { title: 'Phone Catalog',      tag: 'eCommerce',         desc: 'A complete online store for phones and mobile accessories: catalog browsing, cart, favorites, product detail with image carousel and variant picker.',      chips: ['React', 'TypeScript', 'Sass'],             layout: 'half' },
-      { title: 'Welcome to the MET', tag: 'Marketing site',    desc: 'A fully responsive museum experience with hero galleries, exhibition pages and a contact form. Pixel-tight, mobile-first.',                                chips: ['HTML', 'Sass', 'BEM'],                    layout: 'half' },
+      {
+        key: 'voteforgift',
+        title: 'VoteForGift',
+        tag: 'Own product · Live',
+        desc: 'A platform for choosing and paying for group gifts together. A group — a family, a school class or a work team — creates an event, members propose gifts and vote, then chip in for the winner via BLIK. Microservice architecture: Next.js 16 on the front, a gateway and NestJS services on Prisma, RabbitMQ messaging, Tpay payments with idempotency and an immutable event ledger. Plus GDPR-driven PII masking, an audit log, in-house QA documentation and a security test report.',
+        chips: ['Next.js 16', 'NestJS', 'Prisma', 'PostgreSQL', 'RabbitMQ', 'Tpay · BLIK'],
+        layout: 'showcase',
+        shots: [
+          'VoteForGift — ranked gift proposals with vote counts and shop links',
+          'VoteForGift — event detail: collection timeline, winning gift and BLIK payment',
+        ],
+        reelAlt: 'VoteForGift promo video',
+      },
+      { key: 'smileexpress', title: 'Smile Express',       tag: 'Clinic · Live',     desc: 'Multi-location dental clinic platform: office finder and multi-step booking wizard with OTP verification, calendar scheduling, LeadSigma & GTM integrations. TypeScript/React 19 monorepo (Turborepo, pnpm) with Next.js 16, Fastify, Azure Key Vault, Datadog, Sentry and Playwright e2e tests.', chips: ['Next.js', 'React 19', 'TypeScript', 'Fastify', 'Turborepo', 'Azure'], layout: 'feature' },
+      { key: 'balconsonne', title: 'BalkonSonne App',    tag: 'SaaS · AI · Live',  desc: 'A multilingual React + TypeScript + MUI wizard using AI to analyze balcony sunlight and evaluate the feasibility and profitability of small solar panels.',      chips: ['React', 'TypeScript', 'MUI', 'AI'],        layout: 'feature-alt' },
+      { key: 'hematobieg', title: 'Hematobieg',         tag: 'Commercial · Live', desc: 'A national charity-run platform supporting Polish leukemia patients. Built end-to-end: marketing site, registration flow, sponsor showcase, content pages.', chips: ['React', 'Bootstrap', 'Responsive', 'CMS'], layout: 'feature' },
+      { key: 'phonecatalog', title: 'Phone Catalog',      tag: 'eCommerce',         desc: 'A complete online store for phones and mobile accessories: catalog browsing, cart, favorites, product detail with image carousel and variant picker.',      chips: ['React', 'TypeScript', 'Sass'],             layout: 'half' },
+      { key: 'welcometothemet', title: 'Welcome to the MET', tag: 'Marketing site',    desc: 'A fully responsive museum experience with hero galleries, exhibition pages and a contact form. Pixel-tight, mobile-first.',                                chips: ['HTML', 'Sass', 'BEM'],                    layout: 'half' },
     ],
   },
 
