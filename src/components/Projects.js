@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import Icon from './Icon';
 import { useInView, useMouseTrack } from '../hooks';
 
@@ -39,14 +40,49 @@ const LAYOUT_CLASS = {
   third:         'project compact',
 };
 
-function ProjectMedia({ p, media }) {
+/* ── Lightbox ───────────────────────────────────────────────── */
+function Lightbox({ shot, onClose, closeLabel }) {
+  const closeRef = useRef(null);
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeRef.current?.focus();
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose]);
+
+  return createPortal(
+    <div className="lightbox" onClick={onClose} role="dialog" aria-modal="true" aria-label={shot.alt}>
+      <button ref={closeRef} className="lightbox-close" onClick={onClose} aria-label={closeLabel} type="button">
+        <Icon name="x" size={18} />
+      </button>
+      <figure className="lightbox-figure" onClick={(e) => e.stopPropagation()}>
+        <img src={shot.src} alt={shot.alt} />
+        <figcaption>{shot.alt}</figcaption>
+      </figure>
+    </div>,
+    document.body
+  );
+}
+
+function ProjectMedia({ p, media, onOpen }) {
   if (media.kind === 'phones') {
     const alt = p.shots || [];
     return (
       <div className="project-media phone-stack">
-        <div className="phone">
-          <img src={media.shots[0]} alt={alt[0] || p.title} loading="lazy" />
-        </div>
+        <button
+          type="button"
+          className="phone phone-shot"
+          onClick={() => onOpen({ src: media.shots[0], alt: alt[0] || p.title })}
+          aria-label={alt[0] || p.title}
+        >
+          <img src={media.shots[0]} alt="" loading="lazy" />
+        </button>
         <div className="phone phone-reel">
           <video
             src={media.video}
@@ -57,20 +93,30 @@ function ProjectMedia({ p, media }) {
             aria-label={p.reelAlt || p.title}
           />
         </div>
-        <div className="phone">
-          <img src={media.shots[1]} alt={alt[1] || p.title} loading="lazy" />
-        </div>
+        <button
+          type="button"
+          className="phone phone-shot"
+          onClick={() => onOpen({ src: media.shots[1], alt: alt[1] || p.title })}
+          aria-label={alt[1] || p.title}
+        >
+          <img src={media.shots[1]} alt="" loading="lazy" />
+        </button>
       </div>
     );
   }
   return (
-    <div className="project-media">
-      <img src={media.src} alt={p.title} loading="lazy" />
-    </div>
+    <button
+      type="button"
+      className="project-media project-media-btn"
+      onClick={() => onOpen({ src: media.src, alt: p.title })}
+      aria-label={p.title}
+    >
+      <img src={media.src} alt="" loading="lazy" />
+    </button>
   );
 }
 
-function ProjectCard({ p, i, inView, t }) {
+function ProjectCard({ p, i, inView, t, onOpen }) {
   const [ref, onMouseMove] = useMouseTrack();
   const media = MEDIA[p.key];
   const cls = LAYOUT_CLASS[p.layout] || 'project';
@@ -83,7 +129,7 @@ function ProjectCard({ p, i, inView, t }) {
       <div className="project-tag"><span className="dot" />{p.tag}</div>
       <div className="project-num">/ 0{i + 1}</div>
       <div className="project-glow" />
-      <ProjectMedia p={p} media={media} />
+      <ProjectMedia p={p} media={media} onOpen={onOpen} />
       <div className="project-body">
         <div className="project-title">{p.title}</div>
         <div className="project-desc">{p.desc}</div>
@@ -104,6 +150,9 @@ export default function Projects({ t }) {
   const ref = useRef(null);
   const inView = useInView(ref);
   const sec = t.projectsSec;
+  const [shot, setShot] = useState(null);
+  const close = useCallback(() => setShot(null), []);
+
   return (
     <section id="work" ref={ref}>
       <div className="container">
@@ -116,9 +165,13 @@ export default function Projects({ t }) {
         </div>
 
         <div className="projects-grid">
-          {sec.items.map((p, i) => <ProjectCard key={p.key} p={p} i={i} inView={inView} t={t} />)}
+          {sec.items.map((p, i) => (
+            <ProjectCard key={p.key} p={p} i={i} inView={inView} t={t} onOpen={setShot} />
+          ))}
         </div>
       </div>
+
+      {shot && <Lightbox shot={shot} onClose={close} closeLabel={sec.closeImage} />}
     </section>
   );
 }

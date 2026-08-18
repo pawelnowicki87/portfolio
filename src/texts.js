@@ -106,12 +106,13 @@ const pl = {
     titleAccent: 'realizacje.',
     sub: 'Od platformy charytatywnej po e-commerce i marketing site — przekrój tego, co wdrożyłem.',
     demo: 'Live demo',
+    closeImage: 'Zamknij podgląd',
     items: [
       {
         key: 'voteforgift',
         title: 'VoteForGift',
         tag: 'Produkt własny · Live',
-        desc: 'Platforma do wspólnego wybierania i opłacania prezentów. Grupa — rodzina, klasa albo zespół — zakłada wydarzenie, członkowie proponują prezenty i głosują, a potem składają się na zwycięski przez BLIK. Architektura mikroserwisowa: Next.js 16 na froncie, gateway i serwisy NestJS na Prismie, komunikacja przez RabbitMQ, płatności Tpay z idempotencją i niezmiennym rejestrem zdarzeń. Do tego maskowanie danych osobowych pod RODO, audit log, własna dokumentacja QA i raport z testów bezpieczeństwa.',
+        desc: 'Platforma do wspólnego wybierania i opłacania prezentów: grupa zakłada wydarzenie, głosuje nad propozycjami i składa się na zwycięski przez BLIK. Architektura mikroserwisowa — Next.js 16, serwisy NestJS na Prismie, RabbitMQ, płatności Tpay z idempotencją. Maskowanie danych osobowych pod RODO i własna dokumentacja QA.',
         chips: ['Next.js 16', 'NestJS', 'Prisma', 'PostgreSQL', 'RabbitMQ', 'Tpay · BLIK'],
         layout: 'showcase',
         shots: [
@@ -301,12 +302,13 @@ const en = {
     titleAccent: 'projects.',
     sub: "From a charity platform to e-commerce and a marketing site — a snapshot of what I've shipped.",
     demo: 'Live demo',
+    closeImage: 'Close preview',
     items: [
       {
         key: 'voteforgift',
         title: 'VoteForGift',
         tag: 'Own product · Live',
-        desc: 'A platform for choosing and paying for group gifts together. A group — a family, a school class or a work team — creates an event, members propose gifts and vote, then chip in for the winner via BLIK. Microservice architecture: Next.js 16 on the front, a gateway and NestJS services on Prisma, RabbitMQ messaging, Tpay payments with idempotency and an immutable event ledger. Plus GDPR-driven PII masking, an audit log, in-house QA documentation and a security test report.',
+        desc: 'A platform for choosing and paying for group gifts: a group creates an event, votes on the proposals and chips in for the winner via BLIK. Microservice architecture — Next.js 16, NestJS services on Prisma, RabbitMQ, Tpay payments with idempotency. GDPR-driven PII masking and in-house QA documentation.',
         chips: ['Next.js 16', 'NestJS', 'Prisma', 'PostgreSQL', 'RabbitMQ', 'Tpay · BLIK'],
         layout: 'showcase',
         shots: [

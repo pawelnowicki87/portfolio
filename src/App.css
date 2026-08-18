@@ -959,6 +959,12 @@ section { position: relative; padding: clamp(80px, 12vw, 140px) clamp(20px, 4vw,
 }
 
 /* ── Showcase: full width, mobile app shown in phone frames ── */
+/* Grow with the copy instead of clipping it — .project has overflow:hidden,
+   so a fixed height silently swallows the chips and the demo button. */
+.project.project-showcase {
+  height: auto;
+  min-height: 420px;
+}
 .project-showcase .project-media { flex: 0 0 52%; order: 2; }
 
 .phone-stack {
@@ -1140,6 +1146,85 @@ section { position: relative; padding: clamp(80px, 12vw, 140px) clamp(20px, 4vw,
   letter-spacing: 0.04em;
   color: var(--voka-teal-200);
   white-space: nowrap;
+}
+
+/* ── Clickable media (opens the lightbox) ── */
+.project-media-btn,
+.phone-shot {
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  cursor: zoom-in;
+  appearance: none;
+}
+.phone-shot { border: 1px solid rgba(255,255,255,0.14); cursor: zoom-in; }
+.project-media-btn { display: block; text-align: left; background: var(--bg-1); }
+.project-media-btn:focus-visible,
+.phone-shot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Lightbox ── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background: rgba(3, 7, 13, 0.86);
+  backdrop-filter: blur(10px);
+  animation: lb-in 0.18s ease-out;
+}
+@keyframes lb-in { from { opacity: 0; } to { opacity: 1; } }
+
+.lightbox-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-height: 100%;
+  cursor: default;
+}
+.lightbox-figure img {
+  max-width: min(92vw, 460px);
+  max-height: calc(100vh - 130px);
+  width: auto;
+  height: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.16);
+  box-shadow: 0 40px 90px -20px rgba(0,0,0,0.9);
+  display: block;
+}
+.lightbox-figure figcaption {
+  max-width: min(92vw, 460px);
+  text-align: center;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--fg-3);
+}
+.lightbox-close {
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 40px; height: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--fg-1);
+  cursor: pointer;
+  transition: background var(--motion-fast), transform var(--motion-fast);
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.16); transform: scale(1.05); }
+.lightbox-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox { animation: none; }
+  .lightbox-close:hover { transform: none; }
 }
 
 /* Actions */
