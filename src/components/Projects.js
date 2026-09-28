@@ -35,7 +35,7 @@ const MEDIA = {
 const LINKS = {
   voteforgift:     'https://voteforgift.pl/',
   smileexpress:    'https://smileexpress.com/',
-  balconsonne:     'https://balkonsonne.app/?lang=en&utm_source=chatgpt.com',
+  balconsonne:     'https://balkonsonne.app/?lang=en',
   hematobieg:      'https://hematobieg.org/',
   phonecatalog:    'https://pawelnowicki87.github.io/react_phone-catalog/',
   welcometothemet: 'https://pawelnowicki87.github.io/welcome_to_the_met/',

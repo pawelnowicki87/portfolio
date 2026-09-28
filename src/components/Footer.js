@@ -9,7 +9,7 @@ export default function Footer({ t }) {
         <span style={{ color: 'var(--fg-mute)' }}>·</span>
         <a href="https://www.linkedin.com/in/pawe%C5%82-nowicki-305380268/" target="_blank" rel="noreferrer">LinkedIn</a>
         <span style={{ color: 'var(--fg-mute)' }}>·</span>
-        <a href="mailto:webstardevelop@gmail.com">Email</a>
+        <a href="mailto:pawel.nowicki.dev@gmail.com">Email</a>
       </div>
     </footer>
   );

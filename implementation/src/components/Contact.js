@@ -70,11 +70,11 @@ export default function Contact({ t }) {
 
         <div className="contact-grid">
           <div className={'contact-info reveal' + (inView ? ' in-view' : '')}>
-            <a className="contact-item" href="mailto:webstardevelop@gmail.com">
+            <a className="contact-item" href="mailto:pawel.nowicki.dev@gmail.com">
               <div className="ic"><Icon name="mail" /></div>
               <div>
                 <div className="label">{sec.info.email}</div>
-                <div className="val">webstardevelop@gmail.com</div>
+                <div className="val">pawel.nowicki.dev@gmail.com</div>
               </div>
             </a>
             <a className="contact-item" href="tel:+48504782655">
