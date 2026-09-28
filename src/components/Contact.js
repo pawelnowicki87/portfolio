@@ -3,6 +3,8 @@ import emailjs from '@emailjs/browser';
 import Icon from './Icon';
 import { useInView } from '../hooks';
 
+const CONTACT_EMAIL = 'pawel.nowicki.dev@gmail.com';
+
 export default function Contact({ t }) {
   const ref = useRef(null);
   const inView = useInView(ref);
@@ -31,13 +33,13 @@ export default function Contact({ t }) {
     const publicKey  = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
-      /* No env configured — simulate so the form is still demoable. */
-      setTimeout(() => {
-        setBusy(false);
-        setStatusType('ok');
-        setStatus(sec.sendOk);
-        setForm({ user_name: '', user_email: '', subject: '', message: '' });
-      }, 900);
+      /* EmailJS not configured: hand the message over to the visitor's mail app. */
+      const subject = encodeURIComponent(form.subject || 'Portfolio');
+      const body = encodeURIComponent(`${form.message}\n\n${form.user_name} <${form.user_email}>`);
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+      setBusy(false);
+      setStatusType('ok');
+      setStatus(sec.sendMailto);
       return;
     }
 
@@ -70,11 +72,11 @@ export default function Contact({ t }) {
 
         <div className="contact-grid">
           <div className={'contact-info reveal' + (inView ? ' in-view' : '')}>
-            <a className="contact-item" href="mailto:pawel.nowicki.dev@gmail.com">
+            <a className="contact-item" href={`mailto:${CONTACT_EMAIL}`}>
               <div className="ic"><Icon name="mail" /></div>
               <div>
                 <div className="label">{sec.info.email}</div>
-                <div className="val">pawel.nowicki.dev@gmail.com</div>
+                <div className="val">{CONTACT_EMAIL}</div>
               </div>
             </a>
             <a className="contact-item" href="tel:+48504782655">

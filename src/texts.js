@@ -206,6 +206,7 @@ const pl = {
     valError: 'Uzupełnij imię, email i wiadomość.',
     sendOk: 'Wiadomość wysłana. Odezwę się w ciągu 24h.',
     sendErr: 'Wystąpił błąd. Spróbuj ponownie później.',
+    sendMailto: 'Otwieram Twój program pocztowy z gotową wiadomością. Wystarczy ją wysłać.',
   },
 
   /* --- Footer --- */
@@ -367,6 +368,7 @@ const en = {
     valError: 'Please fill in your name, email and message.',
     sendOk: "Message sent. I'll be back to you within 24h.",
     sendErr: 'Something went wrong. Please try again later.',
+    sendMailto: 'Opening your email app with the message ready to send.',
   },
 
   footer: { built: '© 2026 · Paweł Nowicki · Built in Wrocław' },

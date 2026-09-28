@@ -30,6 +30,10 @@ jobs:
 
       # CI=true keeps CRA treating build warnings as errors.
       - run: npm run build
+        env:
+          REACT_APP_EMAILJS_SERVICE_ID: ${{ vars.REACT_APP_EMAILJS_SERVICE_ID }}
+          REACT_APP_EMAILJS_TEMPLATE_ID: ${{ vars.REACT_APP_EMAILJS_TEMPLATE_ID }}
+          REACT_APP_EMAILJS_PUBLIC_KEY: ${{ vars.REACT_APP_EMAILJS_PUBLIC_KEY }}
 
       - uses: actions/configure-pages@v5
 
