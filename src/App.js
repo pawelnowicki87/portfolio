@@ -1,57 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
 import Projects from './components/Projects';
-import Testimonials from './components/Testimonials';
+import About from './components/About';
+import Process from './components/Process';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import texts from './texts';
-import { useScrollActive } from './hooks';
-
+import copy from './portfolioCopy';
+import { MotionContext } from './components/Motion';
 import './App.css';
 
-const SECTION_IDS = ['about', 'skills', 'work', 'voices', 'contact'];
-
+function saved(key, fallback) {
+  try { return localStorage.getItem(key) || fallback; } catch { return fallback; }
+}
 export default function App() {
-  const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem('pn:theme');
-    return saved ? saved === 'dark' : true;
-  });
-  const [language, setLanguage] = useState(() => localStorage.getItem('pn:lang') || 'pl');
-  const active = useScrollActive(SECTION_IDS);
-
+  const [language, setLanguage] = useState(() => saved('pn:lang', 'pl') === 'en' ? 'en' : 'pl');
+  const [darkMode, setDarkMode] = useState(() => saved('pn:theme', 'dark') === 'dark');
+  const [motion, setMotion] = useState(() => saved('pn:motion', 'on') !== 'off');
+  const [reduced, setReduced] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   useEffect(() => {
-    document.documentElement.classList.toggle('theme-light', !darkMode);
-    localStorage.setItem('pn:theme', darkMode ? 'dark' : 'light');
-  }, [darkMode]);
-
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReduced(mq.matches);
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
   useEffect(() => {
-    localStorage.setItem('pn:lang', language);
     document.documentElement.lang = language;
-  }, [language]);
-
+    document.documentElement.dataset.theme = darkMode ? 'dark' : 'light';
+    document.documentElement.dataset.motion = motion && !reduced ? 'on' : 'off';
+    document.querySelector('meta[name="description"]').content = copy[language].meta;
+    try {
+      localStorage.setItem('pn:lang', language);
+      localStorage.setItem('pn:theme', darkMode ? 'dark' : 'light');
+      localStorage.setItem('pn:motion', motion ? 'on' : 'off');
+    } catch { /* Storage may be unavailable. */ }
+  }, [language, darkMode, motion, reduced]);
   const t = texts[language];
-
+  const c = copy[language];
   return (
-    <div className="app-shell">
-      <div className="grid-overlay" />
-      <Nav
-        t={t}
-        active={active}
-        language={language}
-        setLanguage={setLanguage}
-        darkMode={darkMode}
-        setDarkMode={setDarkMode}
-      />
-      <Hero t={t} language={language} enable3D />
-      <About t={t} />
-      <Skills t={t} />
-      <Projects t={t} />
-      <Testimonials t={t} />
-      <Contact t={t} />
-      <Footer t={t} />
-    </div>
+    <MotionContext.Provider value={motion && !reduced}>
+      <div className="app-shell">
+        <a className="skip-link" href="#main">{c.skip}</a>
+        <Nav {...{ c, language, setLanguage, darkMode, setDarkMode, motion, setMotion, reduced }} />
+        <main id="main" tabIndex={-1}>
+          <Hero c={c} />
+          <Projects t={t} c={c} />
+          <About c={c} />
+          <Process c={c} />
+          <Contact c={c} />
+        </main>
+        <Footer c={c} />
+      </div>
+    </MotionContext.Provider>
   );
 }

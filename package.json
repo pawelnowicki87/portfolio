@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prebuild": "node scripts/check-email-config.cjs",
     "build": "react-scripts build",
     "test": "react-scripts test"
   },

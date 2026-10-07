@@ -1,128 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Icon from './Icon';
-import { scrollToId } from '../hooks';
+import StudioGlyph from './StudioGlyph';
 
-export default function Nav({ t, active, language, setLanguage, darkMode, setDarkMode }) {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
+export default function Nav({ c, language, setLanguage, darkMode, setDarkMode, motion, setMotion, reduced }) {
+  const dialog = useRef(null);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 30);
-    fn();
-    window.addEventListener('scroll', fn, { passive: true });
-    return () => window.removeEventListener('scroll', fn);
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = previous; };
+  }, [open]);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 961px)');
+    const closeOnDesktop = () => { if (mq.matches) dialog.current?.close(); };
+    mq.addEventListener('change', closeOnDesktop);
+    return () => mq.removeEventListener('change', closeOnDesktop);
   }, []);
-
-  // Lock body scroll when menu open
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [menuOpen]);
-
-  const links = [
-    { id: 'about',   label: t.nav.about },
-    { id: 'skills',  label: t.nav.skills },
-    { id: 'work',    label: t.nav.work },
-    { id: 'voices',  label: t.nav.voices },
-    { id: 'contact', label: t.nav.contact },
-  ];
-
-  const handleLink = (id) => {
-    setMenuOpen(false);
-    setTimeout(() => scrollToId(id), 10);
-  };
-
-  return (
-    <>
-      <nav className={'nav' + (scrolled ? ' scrolled' : '') + (menuOpen ? ' menu-open' : '')}>
-        {/* Brand */}
-        <a className="nav-brand" href="#top" onClick={(e) => { e.preventDefault(); handleLink('top'); }}>
-          <span className="nav-brand-mark"><span>PN</span></span>
-          <span>
-            Paweł Nowicki
-            <small>{t.nav.brandSub}</small>
-          </span>
-        </a>
-
-        {/* Desktop links */}
-        <div className="nav-links">
-          {links.map((l) => (
-            <a
-              key={l.id}
-              className={'nav-link' + (active === l.id ? ' active' : '')}
-              href={'#' + l.id}
-              onClick={(e) => { e.preventDefault(); scrollToId(l.id); }}
-            >
-              {l.label}
-            </a>
-          ))}
-        </div>
-
-        {/* Desktop CTA */}
-        <div className="nav-cta">
-          <div className="lang-switch" role="radiogroup" aria-label="Language">
-            <button type="button" className={'lang-btn' + (language === 'pl' ? ' active' : '')} onClick={() => setLanguage('pl')}>PL</button>
-            <button type="button" className={'lang-btn' + (language === 'en' ? ' active' : '')} onClick={() => setLanguage('en')}>EN</button>
-          </div>
-          <button type="button" className="icon-btn" aria-label="Toggle theme" onClick={() => setDarkMode(!darkMode)}>
-            {darkMode
-              ? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-              : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
-            }
-          </button>
-          <a className="icon-btn" href="https://github.com/pawelnowicki87" target="_blank" rel="noreferrer" aria-label="GitHub"><Icon name="github" size={18} /></a>
-          <a className="icon-btn" href="https://www.linkedin.com/in/pawe%C5%82-nowicki-305380268/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Icon name="linkedin" size={18} /></a>
-          <button className="btn btn-primary nav-cta-btn" onClick={() => scrollToId('contact')}>
-            {t.nav.cta} <Icon name="arrow-right" size={14} />
-          </button>
-        </div>
-
-        {/* Hamburger button (mobile/tablet) */}
-        <button
-          className={'nav-hamburger' + (menuOpen ? ' open' : '')}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menu"
-          type="button"
-        >
-          <span /><span /><span />
-        </button>
+  const close = () => dialog.current?.close();
+  const controls = <div className="nav-controls">
+    <div className="language-switch" aria-label="Language">
+      {['pl', 'en'].map(lang => <button key={lang} type="button" aria-pressed={language === lang} onClick={() => setLanguage(lang)}>{lang.toUpperCase()}</button>)}
+    </div>
+    <button className="icon-button theme-switch" onClick={() => setDarkMode(!darkMode)} aria-label={c.theme} type="button">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">{darkMode ? <><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/></> : <path d="M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11Z"/>}</svg>
+    </button>
+    <button className="icon-button motion-switch" onClick={() => setMotion(!motion)} aria-label={c.motion} aria-pressed={motion && !reduced} disabled={reduced} title={reduced ? c.reduced : c.motion} type="button">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">{motion && !reduced ? <path d="M8 5v14M16 5v14"/> : <path d="m7 4 13 8-13 8Z"/>}</svg>
+    </button>
+  </div>;
+  return <>
+    <header className="site-header">
+      <a className="brand" href="#top" aria-label="Paweł Nowicki"><StudioGlyph /><span>paweł nowicki<span className="brand-period">.</span></span></a>
+      <nav className="desktop-nav" aria-label={language === 'pl' ? 'Nawigacja główna' : 'Main navigation'}>
+        {c.nav.map(([id, label]) => <a key={id} href={'#' + id}>{label}</a>)}
       </nav>
-
-      {/* Mobile overlay menu */}
-      <div className={'nav-mobile-overlay' + (menuOpen ? ' open' : '')} onClick={() => setMenuOpen(false)} />
-      <div className={'nav-mobile-menu' + (menuOpen ? ' open' : '')}>
-        <nav className="nav-mobile-links">
-          {links.map((l) => (
-            <a
-              key={l.id}
-              className={'nav-mobile-link' + (active === l.id ? ' active' : '')}
-              href={'#' + l.id}
-              onClick={(e) => { e.preventDefault(); handleLink(l.id); }}
-            >
-              {l.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="nav-mobile-bottom">
-          <div className="lang-switch">
-            <button type="button" className={'lang-btn' + (language === 'pl' ? ' active' : '')} onClick={() => setLanguage('pl')}>PL</button>
-            <button type="button" className={'lang-btn' + (language === 'en' ? ' active' : '')} onClick={() => setLanguage('en')}>EN</button>
-          </div>
-          <button type="button" className="icon-btn" aria-label="Toggle theme" onClick={() => setDarkMode(!darkMode)}>
-            {darkMode
-              ? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-              : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
-            }
-          </button>
-          <a className="icon-btn" href="https://github.com/pawelnowicki87" target="_blank" rel="noreferrer" aria-label="GitHub"><Icon name="github" size={18} /></a>
-          <a className="icon-btn" href="https://www.linkedin.com/in/pawe%C5%82-nowicki-305380268/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Icon name="linkedin" size={18} /></a>
-        </div>
-
-        <button className="btn btn-primary nav-mobile-cta" onClick={() => handleLink('contact')}>
-          {t.nav.cta} <Icon name="arrow-right" size={14} />
-        </button>
+      <div className="desktop-controls">{controls}<a href="#contact" className="button button-small">{c.talk}<Icon name="arrow-up-right" size={15}/></a></div>
+      <button type="button" className="icon-button mobile-toggle" aria-label={c.menu} aria-expanded={open} aria-controls="mobile-menu" onClick={() => { dialog.current.showModal(); setOpen(true); }}><span/><span/></button>
+    </header>
+    <dialog id="mobile-menu" ref={dialog} className="menu-dialog" aria-label={c.menu} onClose={() => setOpen(false)} onClick={e => { if (e.target === e.currentTarget) close(); }}>
+      <div className="menu-panel">
+        <div className="menu-top"><StudioGlyph/><button type="button" className="icon-button" onClick={close} aria-label={c.close}><Icon name="x"/></button></div>
+        <nav className="mobile-links">{[...c.nav, ['contact', c.talk]].map(([id, label], i) => <a key={id} href={'#' + id} onClick={close}><small>0{i + 1}</small>{label}<Icon name="arrow-up-right" size={24}/></a>)}</nav>
+        {controls}
+        <a className="menu-email" href="mailto:pawel.nowicki.dev@gmail.com">pawel.nowicki.dev@gmail.com</a>
       </div>
-    </>
-  );
+    </dialog>
+  </>;
 }

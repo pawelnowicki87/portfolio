@@ -1,3 +1,7 @@
+# Local workspace directories
+.*/
+!.github/
+
 # Dependencies
 node_modules/
 

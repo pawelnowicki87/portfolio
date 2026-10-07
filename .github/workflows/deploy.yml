@@ -28,6 +28,8 @@ jobs:
 
       - run: npm ci
 
+      - run: npm test -- --watchAll=false --runInBand
+
       # CI=true keeps CRA treating build warnings as errors.
       - run: npm run build
         env:

@@ -1,162 +1,46 @@
 import React, { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
 import Icon from './Icon';
-import { useInView } from '../hooks';
+import { Reveal } from './Motion';
+import { sendContact, ContactError } from '../contactService';
 
-const CONTACT_EMAIL = 'pawel.nowicki.dev@gmail.com';
-
-export default function Contact({ t }) {
-  const ref = useRef(null);
-  const inView = useInView(ref);
-  const sec = t.contactSec;
-
-  const [form, setForm] = useState({ user_name: '', user_email: '', subject: '', message: '' });
+const empty = { user_name: '', user_email: '', subject: '', message: '' };
+export default function Contact({ c }) {
+  const [form, setForm] = useState(empty);
   const [status, setStatus] = useState('');
-  const [statusType, setStatusType] = useState('');
   const [busy, setBusy] = useState(false);
-
-  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const submit = (e) => {
+  const lock = useRef(false);
+  const onChange = e => { setForm(previous => ({ ...previous, [e.target.name]: e.target.value })); setStatus(''); };
+  const submit = async e => {
     e.preventDefault();
-    if (!form.user_name || !form.user_email || !form.message) {
-      setStatusType('err');
-      setStatus(sec.valError);
-      return;
-    }
+    if (lock.current) return;
+    lock.current = true;
     setBusy(true);
-    setStatusType('');
-    setStatus(sec.sending);
-
-    const serviceId  = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-    const publicKey  = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      /* EmailJS not configured: hand the message over to the visitor's mail app. */
-      const subject = encodeURIComponent(form.subject || 'Portfolio');
-      const body = encodeURIComponent(`${form.message}\n\n${form.user_name} <${form.user_email}>`);
-      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-      setBusy(false);
-      setStatusType('ok');
-      setStatus(sec.sendMailto);
-      return;
-    }
-
-    emailjs
-      .send(serviceId, templateId, form, publicKey)
-      .then(() => {
-        setStatusType('ok');
-        setStatus(sec.sendOk);
-        setForm({ user_name: '', user_email: '', subject: '', message: '' });
-      })
-      .catch((err) => {
-        setStatusType('err');
-        setStatus(sec.sendErr);
-        // eslint-disable-next-line no-console
-        console.error(err);
-      })
-      .finally(() => setBusy(false));
+    setStatus('');
+    try {
+      await sendContact(form);
+      setForm(empty);
+      setStatus('success');
+    } catch (error) {
+      setStatus(error instanceof ContactError ? error.code : 'error');
+    } finally { lock.current = false; setBusy(false); }
   };
-
-  return (
-    <section id="contact" ref={ref}>
-      <div className="container">
-        <div className={'section-head reveal' + (inView ? ' in-view' : '')} style={{ textAlign: 'left' }}>
-          <span className="eyebrow"><span className="dot" /> {sec.eyebrow}</span>
-          <h2 className="section-title">
-            {sec.title}<span className="grad-text-accent">{sec.titleAccent}</span>
-          </h2>
-          <p className="section-subtitle">{sec.sub}</p>
+  return <section id="contact" className="contact-section">
+    <div className="contact-art" aria-hidden="true"><img src="/art/blue-portal-1536.webp" srcSet="/art/blue-portal-768.webp 768w, /art/blue-portal-1536.webp 1536w" sizes="100vw" width="1536" height="1024" alt="" loading="lazy"/></div>
+    <div className="section-wrap section-space contact-layout">
+      <Reveal className="contact-copy"><p className="eyebrow">{c.contactLabel}</p><h2 className="section-title">{c.contactTitle}<br/><span>{c.contactAccent}</span></h2><p>{c.contactIntro}</p><a className="contact-email" href="mailto:pawel.nowicki.dev@gmail.com">pawel.nowicki.dev@gmail.com<Icon name="arrow-up-right"/></a><a className="contact-phone" href="tel:+48504782655">+48 504 782 655</a><div className="contact-availability"><span className="status-dot"/>{c.available}</div></Reveal>
+      <Reveal className="contact-form-wrap" delay={100}><form className="contact-form" onSubmit={submit} aria-busy={busy}>
+        <h3>{c.formTitle}</h3>
+        <div className="form-row">
+          <label>{c.name}<input name="user_name" autoComplete="name" required maxLength={100} value={form.user_name} onChange={onChange} placeholder={c.namePh} disabled={busy}/></label>
+          <label>{c.email}<input type="email" name="user_email" autoComplete="email" required maxLength={254} value={form.user_email} onChange={onChange} placeholder={c.emailPh} disabled={busy}/></label>
         </div>
-
-        <div className="contact-grid">
-          <div className={'contact-info reveal' + (inView ? ' in-view' : '')}>
-            <a className="contact-item" href={`mailto:${CONTACT_EMAIL}`}>
-              <div className="ic"><Icon name="mail" /></div>
-              <div>
-                <div className="label">{sec.info.email}</div>
-                <div className="val">{CONTACT_EMAIL}</div>
-              </div>
-            </a>
-            <a className="contact-item" href="tel:+48504782655">
-              <div className="ic"><Icon name="phone" /></div>
-              <div>
-                <div className="label">{sec.info.phone}</div>
-                <div className="val">+48 504 782 655</div>
-              </div>
-            </a>
-            <div className="contact-item">
-              <div className="ic"><Icon name="pin" /></div>
-              <div>
-                <div className="label">{sec.info.location}</div>
-                <div className="val">{sec.info.locationVal}</div>
-              </div>
-            </div>
-            <a className="contact-item" href="https://github.com/pawelnowicki87" target="_blank" rel="noreferrer">
-              <div className="ic"><Icon name="github" /></div>
-              <div>
-                <div className="label">{sec.info.github}</div>
-                <div className="val">@pawelnowicki87</div>
-              </div>
-            </a>
-            <a className="contact-item" href="https://www.linkedin.com/in/pawe%C5%82-nowicki-305380268/" target="_blank" rel="noreferrer">
-              <div className="ic"><Icon name="linkedin" /></div>
-              <div>
-                <div className="label">{sec.info.linkedin}</div>
-                <div className="val">/in/pawel-nowicki</div>
-              </div>
-            </a>
-          </div>
-
-          <form className={'contact-card reveal delay-1' + (inView ? ' in-view' : '')} onSubmit={submit}>
-            <div className="contact-card-title">{sec.formTitle}</div>
-            <div className="contact-card-sub">{sec.formSub}</div>
-
-            <div className="field-row">
-              <label className="field">
-                <span className="field-label">{sec.fName}</span>
-                <input
-                  className="field-input" type="text" name="user_name" required
-                  value={form.user_name} placeholder={sec.fNamePh}
-                  onChange={onChange} disabled={busy}
-                />
-              </label>
-              <label className="field">
-                <span className="field-label">{sec.fEmail}</span>
-                <input
-                  className="field-input" type="email" name="user_email" required
-                  value={form.user_email} placeholder={sec.fEmailPh}
-                  onChange={onChange} disabled={busy}
-                />
-              </label>
-            </div>
-
-            <label className="field">
-              <span className="field-label">{sec.fSubject}</span>
-              <input
-                className="field-input" type="text" name="subject"
-                value={form.subject} placeholder={sec.fSubjectPh}
-                onChange={onChange} disabled={busy}
-              />
-            </label>
-
-            <label className="field">
-              <span className="field-label">{sec.fMessage}</span>
-              <textarea
-                className="field-textarea" name="message" required
-                value={form.message} placeholder={sec.fMessagePh}
-                onChange={onChange} disabled={busy}
-              />
-            </label>
-
-            <button className="btn btn-primary send-btn" type="submit" disabled={busy}>
-              {busy ? sec.sending : sec.sendBtn} <Icon name="arrow-right" size={14} />
-            </button>
-            <div className={'send-status' + (statusType === 'ok' ? ' ok' : '')}>{status}</div>
-          </form>
-        </div>
-      </div>
-    </section>
-  );
+        <label>{c.subject}<input name="subject" maxLength={200} value={form.subject} onChange={onChange} placeholder={c.subjectPh} disabled={busy}/></label>
+        <label>{c.message}<textarea name="message" required maxLength={5000} rows={4} value={form.message} onChange={onChange} placeholder={c.messagePh} disabled={busy}/></label>
+        <p className="form-note">{c.contactNote}</p>
+        <button type="submit" className="button send-button" disabled={busy}>{busy ? c.sending : c.send}<Icon name={status === 'success' ? 'check' : 'arrow-up-right'}/></button>
+        <p className={'form-status ' + status} role="status" aria-live="polite" aria-atomic="true">{busy ? c.sending : status ? c[status] : ''}</p>
+        {(status === 'error' || status === 'unavailable') && <a className="text-link" href="mailto:pawel.nowicki.dev@gmail.com">{c.direct}<Icon name="mail"/></a>}
+      </form></Reveal>
+    </div>
+  </section>;
 }
